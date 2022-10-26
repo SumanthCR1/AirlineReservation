@@ -20,7 +20,9 @@ public class PassangerService {
 			@RequestParam("gender") String gender,
 			@RequestParam("phonenumber") String phonenumber,
 			@RequestParam("contactaddress")String contactaddress,
-			@RequestParam("emailid")String emailid, ModelMap modelMap) {
+			@RequestParam("emailid")String emailid, 
+			@RequestParam("password")String password,
+			ModelMap modelMap) {
 
 	
 	Passanger user=new Passanger();
@@ -35,6 +37,7 @@ public class PassangerService {
 	user.setContactaddress(contactaddress);
 	user.setEmailid(emailid);
 	user.setEmailid(emailid);
+	user.setPassword(password);
 	this.passangerrepository.save(user);
 	
 	
@@ -46,6 +49,7 @@ public class PassangerService {
 	modelMap.put("phonenumber", phonenumber);
 	modelMap.put("contactaddress", contactaddress);
 	modelMap.put("emailid", emailid);
+	modelMap.put("password", password);
 	
 return "viewpassanger";
 

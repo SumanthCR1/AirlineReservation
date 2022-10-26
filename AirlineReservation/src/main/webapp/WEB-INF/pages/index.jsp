@@ -24,8 +24,13 @@
   color: black;
 }
 .activereg{
-position: fixed;
-left: 78%;
+position: absolute;
+left: 75%;
+}
+
+.admin{
+position: absolute;
+left: 93%;
 }
 
 body {
@@ -39,7 +44,7 @@ body {
 <div class="topnav">
  
   <a>Welcome to AirRide.com</a>
- 
+ <a class="admin" href="admin"> Admin</a>
   <a  class="activereg" href="login">Login/Create new account</a>
  
 </div>
@@ -81,8 +86,8 @@ body {
             
            
                 <input type="date" placeholder="Departure Date" style="width: 120px;margin:20px">
-                <input type="date" placeholder="Departure Time" style="width: 120px;margin:20px">
-                <select style="width: 150px;margin:20px" >
+           
+                <select style="width: 150px;margin:20px":">
                     <option value="">Preffered Airline</option>
                     <option value="">IndoGo</option>
                     <option value="">AirIndia</option>
@@ -98,27 +103,14 @@ body {
 
                 <div style="width: 150px;margin:20px">
                     <input type="number" id="input-group" placeholder="Adult"><br></br>
-                    <input type="number" id="input-group" placeholder="Children(2-11years)"><br></br>
-                    <input type="number" id="input-group" placeholder="infant(under 2years)"><br></br>
+                    <input type="number" id="input-group" placeholder="Children(0-11years)"><br></br>
+                    
                 </div>
 
-                <div >
-                    <span id="input-group" class="text-primary">Select Your Fare</span> 
-                    <input type="radio" id="input-group" name="r">
-                    <label class="text-white" for="input-group">One Way</label>
-                    <input type="radio" id="input-group" name="r">
-                    <label class="text-white" for="input-group">Round Trip</label>
-                </div>
-
-				<div>
-                    <input type="date" id="input-group" placeholder="Return Date" style="width: 120px;margin:20px">
-                    <input type="date" id="input-group" placeholder="Return time" style="width: 120px;margin:20px">
-                    <input type="text" id="input-group1" placeholder="Any Message" style="width: 120px;margin:20px">
-                </div>
                 </form>
 
 				<div>
-                 <form  action="fetchflight" >
+                 <form  action="fetchflightdetails" >
                 <button type="submit" >Submit Form</button><br></br>
                 <button type="reset" class="btn btn-primary">Clear Form</button>
             </div>

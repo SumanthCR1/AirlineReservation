@@ -20,7 +20,7 @@
 <h4>contact_address :${contactaddress }</h4>
 <h4> email_id  :${emailid}</h4>
 
-<h1> Data inserted into Table</h1>
+<h1> Data saved successfully</h1>
 <input type="submit" value="Go to login page">
 
 </body>

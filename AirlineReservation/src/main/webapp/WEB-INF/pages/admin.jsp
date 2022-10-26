@@ -7,21 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
 <center>
 <fieldset style="width: 300px">
-
-<form method="post" action="filter">
-Enter First Name:<input type="text" name=firstname><br><br>
-Enter  Password:<input type="text" name="password"><br><br>
+<h1>Welcome to Admin port</h1>
+<form method="post" action="adminlogin">
+Enter user Name:<input type="text" name=username><br><br>
+Enter admin Password:<input type="text" name="adminpassword"><br><br>
 
 <input type="submit" value="Login">
-</form>
-<br><br>
-<form action="regist">
-<input type="submit" value="signup">
 </form>
 
 </fieldset>
 </center>
+
 </body>
 </html>

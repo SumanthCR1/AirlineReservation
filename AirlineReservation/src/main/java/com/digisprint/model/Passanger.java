@@ -32,7 +32,8 @@ public class Passanger {
 	private String contactaddress;
 	@Column
 	private String emailid;
-	
+	@Column
+	private String password;
 	public int getId() {
 		return id;
 	}
@@ -81,11 +82,18 @@ public class Passanger {
 	public void setEmailid(String emailid) {
 		this.emailid = emailid;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	@Override
 	public String toString() {
 		return "Passanger [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", age=" + age
 				+ ", gender=" + gender + ", phonenumber=" + phonenumber + ", contactaddress=" + contactaddress
-				+ ", emailid=" + emailid + "]";
+				+ ", emailid=" + emailid + ", password=" + password + "]";
 	}
+	
 
 }
