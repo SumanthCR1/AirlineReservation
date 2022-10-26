@@ -1,21 +1,23 @@
 package com.digisprint.controller;
 
-import java.sql.SQLException;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.digisprint.repository.Passangerrepository;
+import org.springframework.web.servlet.ModelAndView;
+import com.digisprint.model.Passanger;
+import com.digisprint.repository.*;
 import com.digisprint.service.FlightService;
 import com.digisprint.service.LoginService;
 import com.digisprint.service.PassangerService;
+import java.sql.SQLException;
+import java.util.Objects;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @Component
@@ -57,17 +59,16 @@ public class PassangerController {
 	}
 	
 	 @PostMapping("/filter") 
-	 public String login(HttpServletRequest request, ModelMap model) throws SQLException {
+	 public ModelAndView login(HttpServletRequest request, ModelMap model) throws SQLException {
 		    System.out.println("comming into filter");
 		      
 		    boolean result=loginService.validate(request);
 		    if(result)
 		    {
-		    	return "Loginsuccess";
-		      
+		      return controller.fetchRows(request);
 		    }
 		    else {
-		        return "Loginfailed";
+		        return null;
 		    }
 
 		}

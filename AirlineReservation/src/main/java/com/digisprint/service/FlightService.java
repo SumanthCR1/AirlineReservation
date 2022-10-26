@@ -25,13 +25,15 @@ public class FlightService {
 }
 
 	
+
 /*
  * public List<Flight> flightlistffetch() {
  * 
- * List<Flight> flight = new ArrayList<Flight>(); flightrepository.findAllName
+ * List<Flight> flight = new ArrayList<Flight>();
  * flightrepository.findAll().forEach(flight1 -> flight.add(flight1)); return
  * flight;
  * 
  * }
  */
+ 
 }
