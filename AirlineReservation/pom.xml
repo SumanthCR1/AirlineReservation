@@ -66,13 +66,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-
-		</dependency>
-
 
 		<dependency>
 			<groupId>taglibs</groupId>

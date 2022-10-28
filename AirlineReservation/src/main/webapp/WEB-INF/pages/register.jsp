@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="login" >
+<input type="submit" value="GoToBackPage">
+</form>
 
 <center>
 <form  action="/details" method="post" name= "hello">

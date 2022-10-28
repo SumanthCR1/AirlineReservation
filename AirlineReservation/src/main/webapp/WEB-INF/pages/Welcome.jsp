@@ -10,6 +10,8 @@
 	background-image: url("aeroplane1.jpg");
 }
 </style>
+
+
 </head>
 <body>
 <center>
@@ -20,7 +22,15 @@
 
 <form method="get" action="index">
 <input type="submit" value="CLick here to go to main page...">
+</form><br></br>
+
+
+ <form class ="test3" action="Searchstatus" method="post" >
+ <h2>If You Have Already Booked And Want To Check Flight Status</h2><br>
+Search Here<input required="required" type = "number" placeholder="Enter flight number" name="flightno"> <br><br>
+ <input type="submit" value="Search"></input>
 </form>
+
 </center>
 
 </body>

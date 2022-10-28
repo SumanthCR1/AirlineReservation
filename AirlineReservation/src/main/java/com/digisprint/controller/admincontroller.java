@@ -33,6 +33,9 @@ public class admincontroller {
 	@Autowired
 	adminService service;
 	
+	@Autowired
+	FlightController controller;
+	
 	
 	@GetMapping("/admin")
 	public String Entry() {
@@ -41,19 +44,20 @@ public class admincontroller {
 		
 	@PostMapping("/adminlogin")
 
-	 public ModelAndView loginadmin(HttpServletRequest request) throws SQLException {
-	    System.out.println("comming");
+	 public ModelAndView loginadmin(@RequestParam ("username") String username, @RequestParam("adminpassword") String adminpassword,  HttpServletRequest request) throws SQLException {
+	    System.out.println(username +" "+adminpassword);
 	    String redirect;   
-	    boolean result=service.validate(request);
+	    boolean result=service.validate(username, adminpassword);
 	    if(result==true)
 	    {
-	        redirect="fetchflightdetails";
+	    	System.out.println("True comming");
+	        return controller.fetchflightdetailsfromadmin(request);
 	    }
 	    else {
-	        redirect="index";
+	        return null ;
 	    }
-	    ModelAndView mv= new ModelAndView(redirect);
-	    return mv;
+	   // ModelAndView mv= new ModelAndView(redirect);
+	    //return mv;
 	}
 	
 }

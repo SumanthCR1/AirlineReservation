@@ -36,10 +36,7 @@
 	position: absolute;
 	left: 92%;
 }
-.Book{
-	position: absolute;
-	left: 85%;
-	}
+
 
 body {
 	background-image: url("images/aeroplane1.jpg");
@@ -55,35 +52,15 @@ body {
 		<a>Welcome to AirRide.com</a> <a class="profile" href="userprofile">UserProfile</a> 
 		<a class="admin" href="index"> Logout</a>
 
-	</div>
-
+	</div><br><br>
+<form action="/booking">
+<input type="submit" value="GoToBackPage">
+</form>
 	<center>
-		<h1>welcome</h1>
+		<h1>Welcome to Flight Booking Page</h1>
 
 		<h1>The Flight Details are:</h1>
-	</center>
- <form class="test" action="/datadisplayafterlogin" method="post" >
- 
 
-<select name="data"  id="data">
-  <option value="">sort by </option>
-  <option value="arrivaltime">sort by arrival time</option>
-  <option value="price">sort by price</option>
-  <option value="numberofseatsavailable">sort by number of seats available</option>
-  <option value="flightname">sort by flight name</option>
-  <option value="flightnumber">sort by flight number</option>
-  <option value="traveltime">sort by travel time</option>
-</select>
- <input type="submit" value="sort"></input>
-	
-</form > 
-
-  <br>
-  	
-<form class ="Book"  action="/booking">
-<td><input type="submit" value="To Book flight click here"></td>
-</form><br><br>
-<center>
 <fieldset style="width: 1000px">
 
  <table border = "1" width = "100%">
@@ -104,37 +81,33 @@ body {
 </tr>
 </thead>
 <tbody>
-
-
-
-<c:forEach items="${resultlogin}" var="x">  
-  
   <tr>
 
-   <td>${x.flightnumber} </td> 
-    <td>${x.flightname}</td>  
-	<td>${x.startsfrom}</td>
-	<td>${x.destination}</td>
-	<td>${x.arrivaltime}</td>
-	<td>${x.departuretime}</td>
-	<td>${x.traveltime}</td>
-	<td>${x.totalcapacity}</td>
-	<td>${x.numberofseatsavailable}</td>
-	<td>${x.typesofseatsavailable}</td>
-	<td>${x.price}</td>
+   <td>${flightdetails.flightnumber} </td> 
+    <td>${flightdetails.flightname}</td>  
+	<td>${flightdetails.startsfrom}</td>
+	<td>${flightdetails.destination}</td>
+	<td>${flightdetails.arrivaltime}</td>
+	<td>${flightdetails.departuretime}</td>
+	<td>${flightdetails.traveltime}</td>
+	<td>${flightdetails.totalcapacity}</td>
+	<td>${flightdetails.numberofseatsavailable}</td>
+	<td>${flightdetails.typesofseatsavailable}</td>
+	<td>${flightdetails.price}</td>
 
 	</tr>
 	
-
- 
- </c:forEach>
-
 </tbody>
 </table>
 
-
-
 </fieldset>
+<br><br>
+<form action="confirmingdata" >
+ <input type="submit" value="Confirm Flight"></input>
+</form><br><br>
+<form action="/fetchflightdetailslogin">
+<input type="submit" value="Change Flight">
+</form>
 </center>
 
 </body>

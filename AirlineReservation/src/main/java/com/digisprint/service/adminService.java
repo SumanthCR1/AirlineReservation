@@ -25,19 +25,17 @@ public class adminService {
 	@Autowired
 	adminrepository adminrepo;
 
-	public boolean validate(HttpServletRequest request) {
+	public boolean validate(String name, String password) {
 		System.out.println("Comming in");
-		
-        String username= request.getParameter("username");
-        String adminpassword=request.getParameter("adminpassword");
+	
        
-        if(username.equals("Admin")&&adminpassword.equals("123"))
+        if(name.equals("Admin")&&password.equals("123"))
         {
+        	System.out.println("Trueee");
             return true;
         }
         else
             return false;
 		
-	
 }
 	}

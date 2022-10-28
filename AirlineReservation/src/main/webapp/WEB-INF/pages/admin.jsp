@@ -7,11 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<form action="/index">
+<input type="submit" value="GoToBackPage">
+</form>
 
 <center>
-<fieldset style="width: 300px">
 <h1>Welcome to Admin port</h1>
+<fieldset style="width: 400px">
+<br><br>
+
 <form method="post" action="adminlogin">
 Enter user Name:<input type="text" name=username><br><br>
 Enter admin Password:<input type="text" name="adminpassword"><br><br>

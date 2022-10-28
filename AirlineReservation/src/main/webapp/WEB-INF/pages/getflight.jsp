@@ -6,30 +6,40 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style >
+.activereg{
+position: absolute;
+left: 80%;
+}
+
+</style>
 </head>
 <body>
+<body>
+<form action="/index">
+<input type="submit" value="GoToBackPage">
+</form>
+<a class="activereg" href="login">Login/Create new account</a>
 <center>
 <h1> welcome</h1>
 
 <h1> The Flight Details are:</h1>
+</center>
 
-
- <form  action="/datadisplay" method="post" >
+ <form class="test" action="/datadisplay" method="post" >
 
 <select name="data"  id="data">
-  <option value="">search by </option>
-  <option value="arrivaltime">search by time</option>
-  <option value="price">search by price</option>
-  <option value="numberofseatsavailable">search by number of seats available</option>
-  <option value="flightname">search by flight name</option>
+  <option value="">sort by </option>
+  <option value="arrivaltime">sort by time</option>
+  <option value="price">sort by price</option>
+  <option value="numberofseatsavailable">sort by number of seats available</option>
+  <option value="flightname">sort by flight name</option>
 </select>
- <input type="submit" value="Search"></input><br></br>
+ <input type="submit" value="sort"></input>
 	
-</form> <br>
-
-<input type="text" name="" id="MyInput" placeholder="Search..." onkeyup="searchfun()"> </input><br><br>
-
-
+</form> 
+<center>
+<h2>To Book Flight Please Login </h2>
 <fieldset style="width: 1000px">
 
  <table border = "1" width = "100%">
@@ -77,24 +87,9 @@
 </table>
   
 </fieldset>
+
 </center>
 <script>
-const searchfun=()=>{
-	let filter = document.getElementById('MyInput').value.toUpperCase();
-	let myTable = document.getElementById('MyTable');
-	let tr= MyTable.getElementsByTagName('tr');
-	
-	for(var i=0; i<tr.length; i++){
-		let td= tr[i].getElementsByTagName('td')[0];
-		if(td){
-			let textvalue=td.textContent||td.innerHTML;
-			if (textvalue)
-			}
-	}
-	
-}
 
-
-</script>
 </body>
 </html>

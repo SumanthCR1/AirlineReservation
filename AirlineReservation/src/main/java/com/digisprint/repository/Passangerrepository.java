@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.digisprint.model.Passanger;
 @Repository
 public interface Passangerrepository extends CrudRepository<Passanger,Integer> {
-
+	Passanger findByfirstname(String firstname);
 }

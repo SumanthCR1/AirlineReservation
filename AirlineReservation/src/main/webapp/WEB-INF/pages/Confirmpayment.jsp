@@ -8,14 +8,11 @@
 </head>
 <body>
 <center>
-<h3>Login failed </h3>
- <a  href="login"> Go to login page</a>
- </center>
+<h1>Total Payment is:</h1>
+
+<h2>${Total}</h2>
+
+
+</center>
 </body>
 </html>
-
-
-
-
-
-

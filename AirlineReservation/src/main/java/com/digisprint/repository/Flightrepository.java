@@ -12,6 +12,7 @@ import com.digisprint.model.Flight;
 
 @Repository
 public interface Flightrepository  extends CrudRepository<Flight,Integer> {
+	public List <Flight> findAllByflightnumber(int flightno);
 //	@Query("SELECT * FROM Flight orderby price")
 //	public List<Flight> listItemsWithPriceOver(@Param("data") int data);
 }

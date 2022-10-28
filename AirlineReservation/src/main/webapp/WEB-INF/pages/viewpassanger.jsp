@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<center>
 <form  action="/login" method="get">
 <h1> View Passanger Details </h1>
 <h2>Details are submitted as follows</h2>
@@ -20,8 +21,8 @@
 <h4>contact_address :${contactaddress }</h4>
 <h4> email_id  :${emailid}</h4>
 
-<h1> Data saved successfully</h1>
+<h1>Registered successfully</h1>
 <input type="submit" value="Go to login page">
-
+</center>
 </body>
 </html>

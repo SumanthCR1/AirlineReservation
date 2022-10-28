@@ -7,7 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="/index">
+<input type="submit" value="GoToBackPage">
+</form>
 <center>
+<h1>Welcome to user Login page</h1>
 <fieldset style="width: 300px">
 
 <form method="post" action="filter">

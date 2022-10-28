@@ -1,10 +1,15 @@
 package com.digisprint.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.digisprint.model.Flight;
 import com.digisprint.model.Passanger;
 import com.digisprint.repository.Passangerrepository;
 @Component
@@ -54,4 +59,13 @@ public class PassangerService {
 return "viewpassanger";
 
 	}
+	
+	public List<Passanger> userlist() {
+		  
+		  List<Passanger> user = new ArrayList<Passanger>();
+		  passangerrepository.findAll().forEach(user1 -> user.add(user1));
+		return user;
+	
+}
+	
 }
