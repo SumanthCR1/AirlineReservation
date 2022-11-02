@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>AirFly Admin Login</title>
 </head>
 <body>
 <form action="/index">
@@ -12,15 +12,15 @@
 </form>
 
 <center>
-<h1>Welcome to Admin port</h1>
+<h1>Welcome to Admin Port</h1>
 <fieldset style="width: 400px">
 <br><br>
 
 <form method="post" action="adminlogin">
-Enter user Name:<input type="text" name=username><br><br>
-Enter admin Password:<input type="text" name="adminpassword"><br><br>
+Enter User Name:<input type="text" name=username><br><br>
+Enter Admin Password:<input type="password" name="adminpassword"><br><br>
 
-<input type="submit" value="Login">
+<input type="submit" value="LOGIN">
 </form>
 
 </fieldset>

@@ -1,20 +1,22 @@
 package com.digisprint.controller;
 
-import java.util.ArrayList;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.ModelAndView;
 import com.digisprint.model.Flight;
 import com.digisprint.repository.Flightrepository;
@@ -26,35 +28,72 @@ import com.digisprint.service.FlightService;
 public class FlightController {
 	
 	@Autowired
-	Flightrepository flightrepository;
-	
-	@Autowired
 	FlightService flightservice;
 	
-	@GetMapping("/fetchflightdetails")
-	public ModelAndView fetchRows ( HttpServletRequest request) {
+	@GetMapping("/addflight1st")
+	public String Entry() {
+		return "addnewflight";
+	}
+	
+	@PostMapping("/addflight2nd")
+	public String addflights(@RequestParam("flightnumber") int flightnumber, @RequestParam("flightname") String flightname,
+			@RequestParam("startsfrom") String startsfrom, @RequestParam("destination") String destination,
+			@RequestParam("arrivaltime") Time arrivaltime, @RequestParam("departuretime") Time departuretime,
+			@RequestParam("traveltime") Time traveltime, @RequestParam("totalcapacity") int totalcapacity,
+			@RequestParam("numberofseatsavailable") int numberofseatsavailable, @RequestParam("typesofseatsavailable") String typesofseatsavailable,
+			 @RequestParam("price") int price, ModelMap map) {
+
+		return flightservice.addflights(flightnumber, flightname, startsfrom, destination, arrivaltime, departuretime, traveltime, totalcapacity, numberofseatsavailable, typesofseatsavailable, price, map);
+	}
+	
+	@GetMapping("/fetchallflightdetails")
+	public ModelAndView fetchallRows ( HttpServletRequest request) {
 		ModelAndView mv= new ModelAndView("getflight");
-		List <Flight> ft=flightservice.flightlist();
-		request.setAttribute ("result", ft);
 		
+		List <Flight> ft=flightservice.flightlist();
+		//List<Flight> res =ft.stream().filter(i->i.getStartsfrom().equalsIgnoreCase(from)&& i.getDestination().equalsIgnoreCase(to)).collect(Collectors.toList());    //.filter(a->a.getDestination().equalsIgnoreCase(to)).collect(Collectors.toList());
+		request.setAttribute ("result", ft);
+	
 		return mv;
 	}
 	
-	
+	@GetMapping("/fetchflightdetails")
+	public ModelAndView fetchRows ( HttpServletRequest request, @RequestParam ("from") String from,@RequestParam("to") String to ,ModelMap map) {
+		ModelAndView mv= new ModelAndView("getflight");
+		System.out.println(from);
+		System.out.println(to);
+		List <Flight> ft=flightservice.flightlist();
+		List<Flight> res =ft.stream().filter(i->i.getStartsfrom().equalsIgnoreCase(from)&& i.getDestination().equalsIgnoreCase(to)).collect(Collectors.toList());    //.filter(a->a.getDestination().equalsIgnoreCase(to)).collect(Collectors.toList());
+		request.setAttribute ("result", res);
+		map.put("from", from);
+		map.put("to", to);
+		return mv;
+	}
 	@GetMapping("/fetchflightdetailslogin")
-	public ModelAndView fetchRowslogin ( HttpServletRequest request) {
+	public String fetchRowslogin ( HttpServletRequest request) {
+	
+		return "indexformafterlogin";
+	}
+	
+	@GetMapping("/fetchflightdetailslogin2nd")
+	public ModelAndView fetchRowslogin2nd ( HttpServletRequest request, @RequestParam("from") String from, @RequestParam("to") String to,
+			@RequestParam("number") String number,@RequestParam("date") Date date, ModelMap map) {
 		ModelAndView mv= new ModelAndView("Loginsuccess");
 		List <Flight> ft=flightservice.flightlist();
-		request.setAttribute ("resultlogin", ft);
+		List <Flight> flight=ft.stream().filter(i->i.getStartsfrom().startsWith(from)&&i.getDestination().startsWith(to)).collect(Collectors.toList());
+		map.put("from", from);
+		map.put("to", to);
+		map.put("date", date);
+		map.put("number", number);
+		request.setAttribute ("resultlogin", flight);
 		request.setAttribute("flight1", ft.get(1));
 		return mv;
 	}
 	
-	
 	@GetMapping("failed")
-	public ModelAndView Loginfailed() {
+	public String Loginfailed() {
 		ModelAndView mv= new ModelAndView("Loginfailed");
-		return mv;
+		return "";
 	}			
 		
 	@GetMapping("/fetchflightdetailsfromadmin")
@@ -64,18 +103,6 @@ public class FlightController {
 		request.setAttribute ("fromadmin", ft);
 		System.out.println("Abcd");
 		return mv;
-	}
-	@RequestMapping(value = "/deleteflight",method = RequestMethod.GET)
-	public ModelAndView delet(@PathVariable("id") int id) {
-		ModelAndView model=new ModelAndView();
-		System.out.println(id);
-		flightservice.delectflight(id);
-		List<Flight> list=flightservice.flightlist();
-		model.addObject("flightlist",list);
-		//model.setViewName("wardenlist");
-		//return new ModelAndView("wardenlist");
-      return model;
-}
-	
+	}	
   
 }

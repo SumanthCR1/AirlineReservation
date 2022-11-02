@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-   
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Admin Page</title>
+ <link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+<script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
 <style>
 .topnav {
-	background-color: black;
+	background-color: gray;
 	overflow: hidden;
 }
 
@@ -32,10 +34,9 @@
 	position: absolute;
 	left: 92%;
 }
-
-body {
-	background-image: url("images/aeroplane1.jpg");
-	background-size: cover;
+.addflight {
+	position: absolute;
+	left: 85%;
 }
 </style>
 
@@ -44,9 +45,10 @@ body {
 
 	<div class="topnav">
 
-		<a>Welcome to AirRide.com</a> 
-		<a href="fetchpassangerdetails">Passenger Data</a> 
-		<a class="admin" href="index"> Logout</a>
+		<a >Welcome to AirFly</a> 
+		<a href="fetchpassangerdetails">UserData</a> 
+		<a href="fetchreservedpassangerdetails">ReservedPassengerData</a> 
+		<a class="admin" href="index" style="background-color: red"> Logout</a>
 
 	</div>
 
@@ -54,10 +56,13 @@ body {
 		<h1>Welcome To The Admin Portal</h1>
 
 		<h1>The Flight Details are:</h1>
-	</center>
+	
+  <form action="/addflight1st">
 
-  <br><br>
-<center>
+<input class="addflight" type="submit" value="Add New Flight" style="background-color: green; color: white;height:40px; width: 150px">
+
+</form><br><br><br>
+
 <fieldset style="width: 1000px">
 
  <table border = "1" width = "100%">
@@ -79,7 +84,6 @@ body {
 </thead>
 <tbody>
 
-
 <c:forEach items="${fromadmin}" var="x">  
   <tr>
 
@@ -94,22 +98,27 @@ body {
 	<td>${x.numberofseatsavailable}</td>
 	<td>${x.typesofseatsavailable}</td>
 	<td>${x.price}</td>
+	 <td>
+       <spring:url value="editFlight123/${x.flightnumber}" var="editURL" />
+       <a href="${editURL}" role="button">Update</a>
+      </td>
+      	
 	<td>
-	<spring:url value="deleteflight" var="deleteURL" />
-       <a class="btn btn-danger" href="${deleteURL}" role="button" >Update</a></td>
-	<td>
-	<spring:url value="deleteflight" var="deleteURL" />
-       <a class="btn btn-danger" href="${deleteURL}" role="button" >Delete</a></td>
- 
-  
-    
+       <spring:url value="/deleteflight/${x.flightnumber}" var="deleteURL" />
+       <a class="btn btn-danger" href="${deleteURL}" role="button" >Delete</a>
+      </td>
+       <input type= "hidden"  name="flightnumber" value="${flightnumber}">
+	
+
 </c:forEach>
 
 
 </tbody>
 </table>
-  
+ 
 </fieldset>
+ <br><br>
+
 </center>
 
 </body>

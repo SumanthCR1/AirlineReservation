@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>PassangerDataEntryPage</title>
 <style>
 .topnav {
-	background-color: black;
+	background-color: gray;
 	overflow: hidden;
 }
 .topnav a {
@@ -30,24 +30,27 @@
 	position: absolute;
 	left: 92%;
 }
-body {
-	background-image: url("images/aeroplane1.jpg");
-	background-size: cover;
-}
+
 </style>
 </head>	
 <body>
 
 <div class="topnav">
-		<a>Welcome to AirRide.com</a> <a class="profile" href="userprofile">UserProfile</a> 
-		<a class="admin" href="index"> Logout</a>
-	</div><br><br
+		<a href="/fetchflightdetailslogin" style="background-color: green;">GoToHomePage</a>
+		<a>Welcome to AirFly</a>
+		 <a class="profile" href="/userprofile">UserProfile</a> 
+		<a class="admin" href="/index" style="background-color: red;"> Logout</a>
+	</div>
 	
-<form action="/booking">
+	
+	
+	<br><br>
+	
+<form action="/fetchflightdetailslogin">
 <input type="submit" value="GoToBackPage">
 </form>
 	<center>
-		<h1>Please Provide Details To Book The Flight Seats..</h1>
+		<h1>Please Provide Passanger Details To Book The Flight Seats..</h1>
 <fieldset style="width: 1000px">
  <table border = "1" width = "100%">
 <thead>
@@ -62,23 +65,29 @@ body {
 </tr>
 </thead>
 <tbody>
-    <td>${number}</td> 
-    <td>${name}</td>  
-	<td>${starts}</td>
-	<td>${destination}</td>
-	<td>${arrivaltime}</td>
-	<td>${departuretime}</td>
-	<td>${price}</td>
+    <td>${flightform.flightnumber}</td> 
+    <td>${flightform.flightname}</td>  
+	<td>${flightform.startsfrom}</td>
+	<td>${flightform.destination}</td>
+	<td>${flightform.arrivaltime}</td>
+	<td>${flightform.departuretime}</td>
+	<td>${flightform.price}</td>
 </tbody>
 </table>
 </fieldset>
-<form action="Checkout">
+ <form:form modelAttribute="flightform" method="post" action="${editURL}">
+      </form:form>
+<form action="/Checkout" >
 <br><br><br>
 Enter Passanger Name: <input required="required" type = "text" placeholder="Enter Name" , name = "passangername">  <br> <br> 
-Enter Age: <input  type = "number" placeholder="Enter Age" , name="age"><br>  <br>
-Enter Number of Seats: <input  type = "number"  name="num"><br>  <br>
- <input type= "hidden"  name="price" value="${price}">
-<input type ="submit" value="CheckOut">
+Enter Passanger Age: <input  type = "number" placeholder="Enter Age" , name="age"><br>  <br>
+
+ <input type= "hidden"  name="price" value="${flightform.price}">
+ <input type= "hidden"  name="date" value="${date}">
+ <input type= "hidden"  name="number" value="${number}">
+
+
+<input type ="submit" value="Submit">
 </form>
 
 

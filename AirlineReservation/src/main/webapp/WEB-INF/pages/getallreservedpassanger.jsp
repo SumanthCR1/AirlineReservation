@@ -49,11 +49,12 @@ body {
 
 </head>
 <body>
-	<div class="topnav">
+
+		<div class="topnav">
 
 		<a >Welcome to AirFly</a> 
+		<a href="fetchpassangerdetails">UserData</a> 
 		
-		<a href="fetchreservedpassangerdetails">ReservedPassengerData</a> 
 		<a class="admin" href="index" style="background-color: red;"> Logout</a>
 
 	</div><br><br>
@@ -64,43 +65,52 @@ body {
 	<center>
 		<h1>Welcome Admin</h1>
 
-		<h1>The User Details are:</h1>
+		<h1>The Reserved Passanger Details are:</h1>
 
 <fieldset style="width: 1000px">
 
  <table border = "1" width = "100%">
 <thead>
 <tr>
-<th >Passanger id</th> 
-<th>FirstName</th>
-<th>LastName</th>
-<th>Age</th>
-<th>Gender</th>
-<th>PhoneNumber</th>
-<th>ContactAddress</th>
-<th>EmailId</th>
-
+<th>Booked Id</th>
+<th >FlightNumber</th> 
+<th>FlightName</th>
+<th>FlightStartsFrom</th>
+<th>Destination</th>
+<th>BookedDate</th>
+<th>ArrivalTime</th>
+<th>DepartureTime</th>
+<th>Passanger Name</th>
+<th>Passanger Age</th>
+<th>No of Seats</th>
+<th>User Name</th>
+<th>User Emailid</th>
+<th>User PhoneNumber`</th>
 </tr>
 </thead>
 <tbody>
 
 
 
-<c:forEach items="${list}" var="x">  
-  
-  <tr>
-
-   <td>${x.id} </td> 
-    <td>${x.firstname}</td>  
-	<td>${x.lastname}</td>
-	<td>${x.age}</td>
-	<td>${x.gender}</td>
-	<td>${x.phonenumber}</td>
-	<td>${x.contactaddress}</td>
-	<td>${x.emailid}</td>
-	</tr>
-
- </c:forEach>
+<c:forEach items="${data}" var="user">  
+	  <tr>
+	    <td>${user.bookingID }</td>
+	    <td>${user.flightNumber}</td>  
+		<td>${user.flightName}</td>
+		<td>${user.flightStartsFrom}</td>
+		<td>${user.destination}</td>
+		<td>${user.bookedDate}</td>
+		<td>${user.arrivalTime}</td>
+		<td>${user.departureTime}</td>
+		<td>${user.passangerName}</td>
+		<td>${user.passangerAge}</td>
+		<td>${user.numberOfSeats}</td>
+		<td>${user.userName}</td>
+		<td>${user.userEmailid}</td>
+		<td>${user.userPhoneNumber}</td>
+		</tr>
+	
+	 </c:forEach>
 
 </tbody>
 </table>

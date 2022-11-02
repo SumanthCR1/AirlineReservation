@@ -2,8 +2,11 @@ package com.digisprint;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+
+
 public class SpringSubmissionForm3Application {
 
 	public static void main(String[] args) {

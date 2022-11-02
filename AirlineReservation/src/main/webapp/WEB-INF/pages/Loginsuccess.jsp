@@ -6,10 +6,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>FlightLists</title>
 <style>
 .topnav {
-	background-color: black;
+	background-color: gray;
 	overflow: hidden;
 }
 
@@ -52,13 +52,17 @@ body {
 
 	<div class="topnav">
 
-		<a>Welcome to AirRide.com</a> <a class="profile" href="userprofile">UserProfile</a> 
-		<a class="admin" href="index"> Logout</a>
+		<a href="/fetchflightdetailslogin" style="background-color: green;">GoToHomePage</a>
+		<a>Welcome to AirFly</a>
+		 <a class="profile" href="userprofile">UserProfile</a> 
+		<a class="admin" href="index" style="background-color: red;"> Logout</a>
 
-	</div>
-
+	</div><br><br>
+<form action="/fetchflightdetailslogin">	
+<input type="submit" value="GoToBackPage">
+</form>
 	<center>
-		<h1>welcome</h1>
+		<h1>Welcome</h1>
 
 		<h1>The Flight Details are:</h1>
 	</center>
@@ -74,16 +78,18 @@ body {
   <option value="flightnumber">sort by flight number</option>
   <option value="traveltime">sort by travel time</option>
 </select>
+<input type= "hidden"  name="from" value="${from}">
+<input type= "hidden"  name="to" value="${to}">
  <input type="submit" value="sort"></input>
 	
 </form > 
 
+
   <br>
   	
-<form class ="Book"  action="/booking">
-<td><input type="submit" value="To Book flight click here"></td>
-</form><br><br>
+
 <center>
+
 <fieldset style="width: 1000px">
 
  <table border = "1" width = "100%">
@@ -122,6 +128,16 @@ body {
 	<td>${x.numberofseatsavailable}</td>
 	<td>${x.typesofseatsavailable}</td>
 	<td>${x.price}</td>
+	
+	 <td>
+      <form action="/Searchstatus/${x.flightnumber}" method="post">	
+       <input type= "hidden"  name="number" value="${number}">
+       <input type= "hidden"  name="date" value="${date}">
+		<input type="submit" value="BOOK">
+       </form>
+      </td>
+     
+	
 
 	</tr>
 	
@@ -135,6 +151,7 @@ body {
 
 
 </fieldset>
+
 </center>
 
 </body>

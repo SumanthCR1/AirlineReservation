@@ -1,13 +1,17 @@
 package com.digisprint.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ws.soap.server.endpoint.interceptor.PayloadRootSmartSoapEndpointInterceptor;
 
 import com.digisprint.model.Flight;
 import com.digisprint.model.Passanger;
@@ -60,6 +64,7 @@ return "viewpassanger";
 
 	}
 	
+
 	public List<Passanger> userlist() {
 		  
 		  List<Passanger> user = new ArrayList<Passanger>();
@@ -67,5 +72,31 @@ return "viewpassanger";
 		return user;
 	
 }
+	
+/*
+ * 
+ * public void addpassanger(Passanger Pass) { passangerrepository.save(Pass);
+ * 
+ * }
+ * 
+ * public Passanger update(HttpServletRequest request) { Passanger
+ * passanger=passangerrepository.findById(Integer.parseInt(request.getParameter(
+ * "id"))); passanger.setFirstname(request.getParameter("id"));
+ * passangerrepository.save(passanger); return passanger; }
+ */
+	
+	public Passanger UpdateFlight(int id) {
+		return passangerrepository.findById(id);
+	}
+	
+	public void addBook(Passanger flight) {
+		passangerrepository.save(flight);
+	}
+	
+	public List<Passanger> getAllFlight(){
+		return (List<Passanger>) passangerrepository.findAll();
+	}
+	
+	
 	
 }

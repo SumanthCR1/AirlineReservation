@@ -19,9 +19,9 @@ left: 80%;
 <form action="/index">
 <input type="submit" value="GoToBackPage">
 </form>
-<a class="activereg" href="login">Login/Create new account</a>
+
 <center>
-<h1> welcome</h1>
+<h1> Welcome To The AirFly Website</h1>
 
 <h1> The Flight Details are:</h1>
 </center>
@@ -29,17 +29,24 @@ left: 80%;
  <form class="test" action="/datadisplay" method="post" >
 
 <select name="data"  id="data">
-  <option value="">sort by </option>
+  <option value="">Sort by </option>
   <option value="arrivaltime">sort by time</option>
   <option value="price">sort by price</option>
   <option value="numberofseatsavailable">sort by number of seats available</option>
   <option value="flightname">sort by flight name</option>
 </select>
+
+<input type= "hidden"  name="from" value="${from}">
+<input type= "hidden"  name="to" value="${to}">
  <input type="submit" value="sort"></input>
 	
 </form> 
 <center>
-<h2>To Book Flight Please Login </h2>
+
+
+<form action="/login">
+<input type="submit" value="To Book Flight Please Login Here" style="background-color: lightblue; color: black;" width="700px" height="40px">
+<br><br><br>
 <fieldset style="width: 1000px">
 
  <table border = "1" width = "100%">

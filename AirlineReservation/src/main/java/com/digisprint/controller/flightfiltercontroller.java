@@ -1,8 +1,10 @@
 package com.digisprint.controller;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -17,8 +19,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,88 +32,102 @@ import com.digisprint.model.Flight;
 import com.digisprint.repository.Flightrepository;
 import com.digisprint.repository.flightfilterrepository;
 import com.digisprint.service.FlightService;
+import com.digisprint.service.flightfilterservice;
 
 @Controller
 @Component
 public class flightfiltercontroller {
 
 	Flight flights;
-	
+
 	@Autowired
 	FlightService flightservice;
-	
 
 	@Autowired
-	flightfilterrepository  flightrepo;
-	
-	@Autowired  
-    JdbcTemplate jdbc;
-	
+	flightfilterservice flightfilterservice;
+
+
 	@PostMapping("/datadisplay")
-	public ModelAndView filterdata(@RequestParam ("data") String data, HttpServletRequest request){
-		
+	public ModelAndView filterdata(@RequestParam("data") String data, HttpServletRequest request,
+			@RequestParam("from") String from, @RequestParam("to") String to, ModelMap map) {
+
 		System.out.println(data);
-		
-	//	jdbc.execute("select * from Flight order by "+data);
-		
-		ArrayList<Flight> flights=  (ArrayList<Flight>) flightrepo.findAll(Sort.by(data));
-
-		ModelAndView mv= new ModelAndView("getflight");
-		
-		request.setAttribute ("result", flights);
-
-	return mv;
-	}
+		System.out.println(from);
+		System.out.println(to);
 	
+		map.put("from", from);
+		map.put("to", to);
+		List<Flight> flights = flightfilterservice.resultFilter(data, from, to);
+		
+		ModelAndView mv = new ModelAndView("getflight");
+
+		request.setAttribute("result", flights);
+
+		return mv;
+	}
+
 	@PostMapping("/datadisplayafterlogin")
-	public ModelAndView filterdataafterlogin(@RequestParam ("data") String data, HttpServletRequest request){
-		
+	public ModelAndView filterafterlogin(@RequestParam("data") String data, HttpServletRequest request,
+			@RequestParam("from") String from, @RequestParam("to") String to, ModelMap map) {
 		System.out.println(data);
-		
-	//	jdbc.execute("select * from Flight order by "+data);
-		
-		ArrayList<Flight> flights=  (ArrayList<Flight>) flightrepo.findAll(Sort.by(data));
+		map.put("from", from);
+		map.put("to", to);
+		List<Flight> flights = flightfilterservice.resultFilter(data, from, to);
 
-		ModelAndView mv= new ModelAndView("Loginsuccess");
-		
-		request.setAttribute ("resultlogin", flights);
+		ModelAndView mv = new ModelAndView("Loginsuccess");
 
-	return mv;
+		request.setAttribute("resultlogin", flights);
+
+		return mv;
 	}
-	
-	@GetMapping("/booking")
-	public String research() {
-		System.out.println("Book");
-		return "Book";
-		
+
+	@PostMapping("/filterafterlogin")
+	public ModelAndView datafilterafterlogin(@RequestParam("data") String data, HttpServletRequest request,
+			@RequestParam("from") String from, @RequestParam("to") String to) {
+
+		System.out.println(data);
+
+		List<Flight> flights = flightfilterservice.resultFilter(data, from, to);
+
+		ModelAndView mv = new ModelAndView("Loginsuccess");
+
+		request.setAttribute("resultlogin", flights);
+
+		return mv;
 	}
-	@PostMapping("/Searchstatus")
-	public String flightstatus(@RequestParam ("flightno") int flightno, HttpServletRequest request,ModelMap map){
+
+	@PostMapping("/Searchstatus/{flightnumber}")
+
+	public ModelAndView flightstatus(@PathVariable int flightnumber, HttpServletRequest request, ModelMap map,
+			@RequestParam("number") int number, @RequestParam("date") Date date) {
 		System.out.println("Search");
-
-		flights=  flightrepo.findByflightnumber(flightno);
-
-		map.put("flightdetails", flights);
-		 
+		System.out.println(flightnumber);
+		ModelAndView model = new ModelAndView("Confirmflight");
+		flights=flightfilterservice.find(flightnumber);
 	
-	return "particularflight";
-	
+		System.out.println(flights);
+		request.setAttribute("flightform", flights);
+		map.put("date", date);
+		map.put("number", number);
+
+		model.setViewName("Confirmflight");
+
+		return model;
+
 	}
 
+	@GetMapping("confirmingdataafter")
+	public ModelMap flightconfirmdatafinal(ModelMap map) {
 
-	@GetMapping("confirmingdata")
-	public String flightconfirmdata(ModelMap map) {
-		
 		map.put("number", flights.getFlightnumber());
 		map.put("name", flights.getFlightname());
 		map.put("starts", flights.getStartsfrom());
 		map.put("destination", flights.getDestination());
 		map.put("arrivaltime", flights.getArrivaltime());
-		map.put("departuretime", flights.getDeparturetime());		
-		map.put("price", flights.getPrice());	
-		return "Confirmflight";
-		
+		map.put("departuretime", flights.getDeparturetime());
+		map.put("price", flights.getPrice());
+		return map;
+
 	}
-	
-	
+
 }
