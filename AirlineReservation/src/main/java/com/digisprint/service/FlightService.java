@@ -13,14 +13,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.digisprint.model.*;
-import com.digisprint.repository.Flightrepository;
+import com.digisprint.repository.FlightRepository;
 
 @Component
 @Service
 public class FlightService {
 
 	@Autowired
-	Flightrepository flightrepository;
+	FlightRepository flightrepository;
 
 	public List<Flight> flightlist() {
 		  

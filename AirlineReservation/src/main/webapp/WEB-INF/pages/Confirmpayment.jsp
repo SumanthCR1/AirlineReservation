@@ -55,6 +55,7 @@
 <h1>Your Total Payment is:</h1>
 
 <h2>${Total}/-</h2>
+${firstname} hello
 
 <form action="/Confirmed">
 <input type="hidden" name="firstname" value="${firstname}">

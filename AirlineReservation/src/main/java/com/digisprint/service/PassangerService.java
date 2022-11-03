@@ -15,12 +15,12 @@ import org.springframework.ws.soap.server.endpoint.interceptor.PayloadRootSmartS
 
 import com.digisprint.model.Flight;
 import com.digisprint.model.Passanger;
-import com.digisprint.repository.Passangerrepository;
+import com.digisprint.repository.PassangerRepository;
 @Component
 @Service
 public class PassangerService {
 	@Autowired
-	Passangerrepository passangerrepository;
+	PassangerRepository passangerrepository;
 	
 	public String details(
 			@RequestParam("firstname") String firstname,
@@ -72,6 +72,13 @@ return "viewpassanger";
 		return user;
 	
 }
+
+	
+
+	public void addpassanger(Passanger Pass) {
+		passangerrepository.save(Pass);
+		}
+	
 	
 /*
  * 
@@ -96,6 +103,8 @@ return "viewpassanger";
 	public List<Passanger> getAllFlight(){
 		return (List<Passanger>) passangerrepository.findAll();
 	}
+
+
 	
 	
 	

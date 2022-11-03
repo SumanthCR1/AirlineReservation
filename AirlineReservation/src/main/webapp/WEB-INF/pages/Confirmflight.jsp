@@ -85,7 +85,9 @@ Enter Passanger Age: <input  type = "number" placeholder="Enter Age" , name="age
  <input type= "hidden"  name="price" value="${flightform.price}">
  <input type= "hidden"  name="date" value="${date}">
  <input type= "hidden"  name="number" value="${number}">
-
+<input type="hidden" name="firstname" value="${firstname}">
+<input  type= "hidden" name="emailid" value="${emailid}">
+<input  type= "hidden" name="phonenumber" value="${phonenumber}">
 
 <input type ="submit" value="Submit">
 </form>

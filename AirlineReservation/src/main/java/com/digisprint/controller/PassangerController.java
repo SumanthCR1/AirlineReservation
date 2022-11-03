@@ -21,7 +21,7 @@ import com.digisprint.repository.*;
 import com.digisprint.service.FlightService;
 import com.digisprint.service.LoginService;
 import com.digisprint.service.PassangerService;
-import com.digisprint.service.Reservationservice;
+import com.digisprint.service.ReservationService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -45,20 +45,21 @@ public class PassangerController {
 	FlightService flightservice;
 
 	@Autowired
-	Reservationservice reservationservice;
+	ReservationService reservationservice;
 
 	@Autowired
-	FlightController controller;
+	FlightController flightcontroller;
+	
 	Passanger passanger;
 
 	@GetMapping("/")
-	public String Welcome() {
-		return "Welcome";
+	public String Welcomepage() {
+		return "Welcomepage";
 	}
 
 	@GetMapping("/index")
 	public String Entry() {
-		return "index";
+		return "indexpage";
 	}
 
 	@GetMapping("/regist")
@@ -73,16 +74,15 @@ public class PassangerController {
 
 	@PostMapping("/filter")
 	public String login(HttpServletRequest request, ModelMap model) throws SQLException {
-		System.out.println("comming into filter");
-
+		
 		boolean result = loginService.validate(request);
 		if (result == true) {
 			passanger = loginService.getdata(request.getParameter("firstname"));
-			return controller.fetchRowslogin(request);
+			return flightcontroller.fetchRowslogin(request);
 
 		} else {
 			System.out.println("falseeee");
-			return controller.Loginfailed();
+			return flightcontroller.Loginfailed();
 		}
 	}
 
@@ -97,7 +97,7 @@ public class PassangerController {
 	}
 
 	@GetMapping("/userprofile")
-	public String profile(ModelMap map) {
+	public String userprofile(ModelMap map) {
 		System.out.println("Hello i am in userprofile");
 		map.put("user", passanger);
 
@@ -105,7 +105,7 @@ public class PassangerController {
 	}
 
 	@GetMapping("/fetchpassangerdetails")
-	public ModelAndView FetchAllPassanger(HttpServletRequest request) {
+	public ModelAndView fetchAllPassanger(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("getallpassanger");
 		List<Passanger> customer = passangerService.userlist();
 		request.setAttribute("list", customer);
@@ -114,7 +114,7 @@ public class PassangerController {
 	}
 
 	@GetMapping("/fetchreservedpassangerdetails")
-	public ModelAndView FetchAllReservedPassanger(HttpServletRequest request) {
+	public ModelAndView fetchAllReservedPassanger(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("getallreservedpassanger");
 		List<Reservation> Reserve = reservationservice.userlist();
 		request.setAttribute("data", Reserve);
@@ -123,70 +123,33 @@ public class PassangerController {
 		return mv;
 	}
 
-	/*
-	 * 
-	 * @RequestMapping(value="/addPassanger" , method=RequestMethod.POST) public
-	 * ModelAndView add(@ModelAttribute("passangerform") Passanger passanger) {
-	 * passangerService.addpassanger(passanger);
-	 * 
-	 * return new ModelAndView("redirect:/userprofile"); // data will add and return
-	 * to main page }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * @GetMapping("/editPassangerData")
-	 * 
-	 * public ModelAndView edituser() { ModelAndView modelAndView = new
-	 * ModelAndView(); System.out.println("coming");
-	 * modelAndView.addObject("passangerform",passanger);
-	 * System.out.println("come"); modelAndView.setViewName("editpassanger");
-	 * 
-	 * return modelAndView;
-	 * 
-	 * //}
-	 * 
-	 * @RequestMapping(value="/edidPassangerData", method = RequestMethod.POST)
-	 * public ModelAndView useredit(HttpServletRequest request, ModelMap map) {
-	 * ModelAndView mv= new ModelAndView("editpassanger"); Passanger passanger=
-	 * passangerService.update(request); map.put("passangerform", passanger); return
-	 * mv; }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * @RequestMapping(value="/addPassanger" , method=RequestMethod.GET) public
-	 * ModelAndView adduser() { ModelAndView modelAndView = new ModelAndView();
-	 * Passanger pass = new Passanger();
-	 * modelAndView.addObject("passangerform",pass);
-	 * modelAndView.setViewName("editpassanger"); return modelAndView; }
-	 */
-
-	@RequestMapping(value="/editpassanger" , method=RequestMethod.POST)
-	public ModelAndView add(@ModelAttribute("passangerform") Passanger passanger) {
-		passangerService.addBook(passanger);
+	@RequestMapping(value="/addPassanger" , method=RequestMethod.POST)
+	public ModelAndView addPassanger(@ModelAttribute("passangerform") Passanger passanger) {
+		passangerService.addpassanger(passanger);
+		
 		return new ModelAndView("redirect:/userprofile"); // data will add and return to main page
 	}
 
-	
-	@RequestMapping("/editPassangerData/{id}")
-	public ModelAndView editFlight(@PathVariable("id") int id) {
+	@GetMapping("/editPassangerData/{id}")
+	public ModelAndView editUser() {
 		ModelAndView modelAndView = new ModelAndView();
-		Passanger flight = passangerService.UpdateFlight(id);
-	System.out.println(flight);
-		modelAndView.addObject("passangerform",flight);
+		System.out.println(passanger.getId());
+		modelAndView.addObject("passangerform",passanger);
 		modelAndView.setViewName("editpassanger");
+
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/editpassanger" , method=RequestMethod.GET)
-	public ModelAndView addFlight() {
+	@RequestMapping(value="/addPassanger" , method=RequestMethod.GET)
+	public ModelAndView addUser() {
 		ModelAndView modelAndView = new ModelAndView();
-		Flight flight = new Flight();
-		modelAndView.addObject("passangerform",flight);
+		Passanger pass = new Passanger();
+		modelAndView.addObject("passangerform",pass);
 		modelAndView.setViewName("editpassanger");
 		return modelAndView;
 	}
+	 
+
 	
 
 	

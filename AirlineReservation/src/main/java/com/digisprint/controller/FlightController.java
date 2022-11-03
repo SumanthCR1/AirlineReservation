@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.ModelAndView;
 import com.digisprint.model.Flight;
-import com.digisprint.repository.Flightrepository;
+import com.digisprint.repository.FlightRepository;
 import com.digisprint.service.FlightService;
 
 @Controller
@@ -77,7 +77,8 @@ public class FlightController {
 	
 	@GetMapping("/fetchflightdetailslogin2nd")
 	public ModelAndView fetchRowslogin2nd ( HttpServletRequest request, @RequestParam("from") String from, @RequestParam("to") String to,
-			@RequestParam("number") String number,@RequestParam("date") Date date, ModelMap map) {
+			@RequestParam("number") String number,@RequestParam("date") Date date,@RequestParam("firstname") String firstname,@RequestParam("emailid") String emailid, 
+			@RequestParam("phonenumber") String phonenumber, ModelMap map) {
 		ModelAndView mv= new ModelAndView("Loginsuccess");
 		List <Flight> ft=flightservice.flightlist();
 		List <Flight> flight=ft.stream().filter(i->i.getStartsfrom().startsWith(from)&&i.getDestination().startsWith(to)).collect(Collectors.toList());
@@ -85,6 +86,11 @@ public class FlightController {
 		map.put("to", to);
 		map.put("date", date);
 		map.put("number", number);
+
+		map.put("firstname", firstname);
+		map.put("emailid", emailid);
+		map.put("phonenumber", phonenumber);
+
 		request.setAttribute ("resultlogin", flight);
 		request.setAttribute("flight1", ft.get(1));
 		return mv;

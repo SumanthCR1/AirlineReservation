@@ -1,15 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Index Login Page</title>
+<title>AirRide.com</title>
 <style>
 .topnav {
-	background-color: gray;
+	background-color: black;
 	overflow: hidden;
 }
 
@@ -27,43 +25,45 @@
 	color: black;
 }
 
-.profile {
+.activereg {
 	position: absolute;
-	left: 80%;
+	left: 75%;
+	background-color: white;
 }
 
 .admin {
 	position: absolute;
-	left: 92%;
+	left: 93%;
+	background-color: Lightblue;
 }
-.Book{
-	position: absolute;
-	left: 85%;
-	}
 
+body {
+	background-image: url('aeroplane2.jpg');
+	background-size: cover;
+}
 </style>
-
 </head>
 <body>
 
 	<div class="topnav">
 
-		<a href="/fetchflightdetailslogin" style="background-color: green;">GoToHomePage</a>
-		<a>Welcome to AirRide.com</a>
-		 <a class="profile" href="userprofile">UserProfile</a> 
-		<a class="admin" href="index" style="background-color: red;"> Logout</a>
+		<a>Welcome to AirFly</a> 
+		<a class="admin" href="admin" style="color: black;"> Admin</a>
+		<a class="activereg" href="login" style="color: black;">Login/Create new account</a>
 
 	</div>
 	<br>
 	<br>
-	
+	<form action="/">
+		<input type="submit" value="GoToBackPage">
+	</form>
 	<center>
-		<h1>Welcome Back to AirFly Online Flight Booking </h1>
+		<h1 style="color: white">Welcome to AirFly Online Flight Booking</h1>
 		<fieldset style="color: black; width: 500px">
 
-			<h1>AirRide Flight Booking Form</h1>
-			<h3>Filter Details By</h3>
-			<form action="fetchflightdetailslogin2nd">
+			<h1 style="color: white">AirRide Booking Form</h1>
+			<h3 style="color: white">Booking Details</h3>
+			<form action="fetchflightdetails">
 				<select style="width: 150px; margin: 20px" name="from">
 					<option value="">From</option>
 					
@@ -82,11 +82,8 @@
 					<option value="Delhi">Delhi</option>
 					<option value="Mysore">Mysore</option>
 					
-				</select>
-				 <input required="required" type = "date" placeholder="Select date" , name="date">
-				
-					
-					<select
+				</select> <input type="date" placeholder="Departure Date"
+					style="width: 120px; margin: 20px" name="date"> <select
 					style="width: 150px; margin: 20px" name="Preference">
 					
 					<option value="">Preffered Airline</option>
@@ -105,23 +102,26 @@
 					<option value="First Class">First Class</option>
 					<option value="Premium">Premium</option>
 				</select>
-				</div><br><br>
-				
-				<input required="required" type = "number" placeholder="Enter numberOfSeats" , name="number">
-				
 				</div>
-					<br><br>
+
+				<div style="width: 150px; margin: 20px">
+					<input type="number" id="input-group" placeholder="Adult" name="noofseats"><br></br> 
+						<input type="number" id="input-group" placeholder="Children(0-11years)"><br></br>
+
+				</div>
+
+
+
 				<div>
-				
-					<input type="hidden" name="firstname" value="${firstname}">
-<input  type= "hidden" name="emailid" value="${emailid}">
-<input  type= "hidden" name="phonenumber" value="${phonenumber}">
 
 					<button type="submit">Submit Form</button>
-					</form><br></br>
-				
+						</form><br></br>
 				</div>
-			
+				<h2>To View All Flights</h2>
+		
+			<form action="/fetchallflightdetails">
+		<input type="submit" value="Click Here.."><br><br><br>
+	</form>
 		</fieldset>
 
 	</center>

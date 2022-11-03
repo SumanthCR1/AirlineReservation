@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Passanger History</title>
 <style>
 .topnav {
 	background-color: gray;
@@ -36,26 +36,25 @@
 	position: absolute;
 	left: 92%;
 }
-
-body {
-	background-image: url("images/aeroplane1.jpg");
-	background-size: cover;
-}
 </style>
 </head>
 <body>
 	<div class="topnav">
-		<a>Welcome to AirRide.com</a> <a class="profile" href="userprofile">UserProfile</a>
-		<a class="admin" href="index"> Logout</a>
+
+		<a href="/fetchflightdetailslogin" style="background-color: green;">GoToHomePage</a>
+		<a>Welcome to AirFly</a> <a class="profile" href="userprofile">UserProfile</a>
+		<a class="admin" href="index" style="background-color: red;">
+			Logout</a>
+
 	</div>
 	<br>
 	<br>
-	<form action="/booking">
+	<form action="/userprofile">
 		<input type="submit" value="GoToBackPage">
 	</form>
 	<center>
-		<h1>Welcome to Flight Booking status Page</h1>
-		<h1>The Booked Details are:</h1>
+		<h1>Welcome to Passanger History Page</h1>
+		<h1>The Booked History are:</h1>
 		<fieldset style="width: 1000px">
 			<table border="1" width="100%">
 				<thead>
@@ -93,14 +92,24 @@ body {
 							<td>${user.userName}</td>
 							<td>${user.userEmailid}</td>
 							<td>${user.userPhoneNumber}</td>
+							<td>
+
+
+
+								<form action="/deletehistory/${user.bookingID}">
+								
+									<input type="submit" value="Cancel ">
+								</form>
+
+							</td>
+
 						</tr>
 					</c:forEach>
 
 				</tbody>
 			</table>
 		</fieldset>
-		<br>
-		<br>
+		<br> <br>
 	</center>
 </body>
 </html>

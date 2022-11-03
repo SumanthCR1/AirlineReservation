@@ -9,19 +9,19 @@
 <title>EditProfile</title>
 </head>
 <body>
-<spring:url value="/addFlight" var="addURL" />
+<form action="/userprofile">
+		<input type="submit" value="GoToBackPage">
+	</form>
+<spring:url value="/addPassanger" var="addURL" />
 <form:form modelAttribute="passangerform" method="post" action="${addURL}" cssClass="form" >
-   <form: hidden path="firstname"/>
-   
-   
-<input type="submit" value="GoToBackPage">
-
-
+   <form:hidden path="id"/>
+  
 <center>
 
 <h1>Enter Passanger Details...</h1>
 <fieldset style="width: 500px">
 
+<input type = "hidden"  name = "id"/>  <br> <br> 
 Enter FirstName: <form:input required="required" type = "text" placeholder="Enter FirstName"  path = "firstname"/>  <br> <br> 
 Enter LastName: <form:input  type = "text" placeholder="Enter LastName"  path="lastname"/><br>  <br>
 Enter age: <form:input required="required" type = "number" placeholder="Enter age"  path="age"/><br>  <br>

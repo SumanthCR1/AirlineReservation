@@ -47,7 +47,7 @@
 
 	</div>
 <center>
-<form  action="/fetchflightdetailslogin" method="get">
+
 <h1> Congratulations  ${UserName} </h1>
 <h2>Your Seats Booked successfully</h2>
 <br><br>
@@ -66,7 +66,7 @@
 <h4> PassangerAge:  ${PassangerAge}</h4>
 <h4> NumberOfSeatsBooked:  ${NumberOfSeats}</h4>
 <br><br>
-</form>
+
 
 <h2>Please Save This File and Provide this Confirmation letter for Verification while Travelling ...</h2>
 <h2>Please Carry Your Any Government Id for Verification while Travelling</h2>
@@ -76,9 +76,10 @@
 <h2>Have a Happy Journey and Have a Happy Landing</h2><br><br>
 
 <h2>Thankyou..</h2>
-<h2>Happy Journey..</h2>
-
+<h2>Happy Landing..</h2>
+<form  action="/fetchflightdetailslogin" method="get">
 <input type="submit" value="GotoHomePage" style="background-color: blue; color:white; height: 40px" ><br><br>
+</form>
 </center>
 </body>
 </html>

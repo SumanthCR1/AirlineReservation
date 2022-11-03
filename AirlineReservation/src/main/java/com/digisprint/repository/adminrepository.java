@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.digisprint.model.Flight;
 import com.digisprint.model.Passanger;
 @Repository
-public interface adminrepository extends JpaRepository<Flight,Integer> {
+public interface AdminRepository extends JpaRepository<Flight,Integer> {
 	
 }

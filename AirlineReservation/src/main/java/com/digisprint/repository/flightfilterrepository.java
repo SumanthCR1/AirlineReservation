@@ -10,7 +10,7 @@ import com.digisprint.model.Flight;
 
 import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 
-public interface flightfilterrepository extends JpaRepository<Flight, Integer> {
+public interface FlightFilterRepository extends JpaRepository<Flight, Integer> {
  
 	public Flight findByflightnumber(int flightno);
 	

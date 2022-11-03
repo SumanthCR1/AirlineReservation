@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.digisprint.model.Flight;
 import com.digisprint.model.Passanger;
 import com.digisprint.model.Reservation;
-import com.digisprint.repository.Reservationrepository;
+import com.digisprint.repository.ReservationRepository;
 
 
 @Component
 @Service
 
-public class Reservationservice {
+public class ReservationService {
 
 	@Autowired
-	Reservationrepository reservationrepo;
+	ReservationRepository reservationrepo;
 
 	Reservation user;
 	
@@ -34,7 +34,7 @@ public class Reservationservice {
 			@RequestParam("destination") String Destination, @RequestParam("arrivaltime") Time ArrivalTime,
 			@RequestParam("departuretime") Time DepartureTime, @RequestParam("passname") String PassangerName,
 			@RequestParam("passangerage") int PassangerAge, @RequestParam("noofseats") int NumberOfSeats,
-			@RequestParam("firstname") String UserName, @RequestParam("emailid") String UserEmailid,
+			@RequestParam("firstname") String userName, @RequestParam("emailid") String UserEmailid,
 			@RequestParam("phonenumber") String UserPhoneNumber,
 			@RequestParam("date") Date date,ModelMap modelMap) {
 		
@@ -52,7 +52,7 @@ public class Reservationservice {
 		user.setPassangerName(PassangerName);
 		user.setPassangerAge(PassangerAge);
 		user.setNumberOfSeats(NumberOfSeats);
-		user.setUserName(UserName);
+		user.setUserName(userName);
 		user.setUserEmailid(UserEmailid);
 		user.setUserPhoneNumber(UserPhoneNumber);
 		user.setBookedDate(date);
@@ -69,7 +69,7 @@ public class Reservationservice {
 		modelMap.put("PassangerName", PassangerName);
 		modelMap.put("PassangerAge", PassangerAge);
 		modelMap.put("NumberOfSeats", NumberOfSeats);
-		modelMap.put("UserName", UserName);
+		modelMap.put("UserName", userName);
 		modelMap.put("UserEmailid", UserEmailid);
 		modelMap.put("UserPhoneNumber", UserPhoneNumber);
 		modelMap.put("date", date);
@@ -100,5 +100,9 @@ public class Reservationservice {
 			return result;
 		
 	}
+
+		public void deleteflight(int bookingID) {
+			reservationrepo.deleteById(bookingID);
+		}
 		
 }

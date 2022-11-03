@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.digisprint.model.Flight;
 
 @Repository
-public interface Flightrepository  extends JpaRepository<Flight,Integer> {
+public interface FlightRepository  extends JpaRepository<Flight,Integer> {
 	
 	public List <Flight> findAllByflightnumber(int flightno);
 

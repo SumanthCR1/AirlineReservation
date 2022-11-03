@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.digisprint.model.Passanger;
 
 @Repository
-public interface Loginrepository extends JpaRepository<Passanger,Integer>{
+public interface LoginRepository extends JpaRepository<Passanger,Integer>{
 	
 	Passanger findByFirstnameAndPassword(String firstname, String password);
 	

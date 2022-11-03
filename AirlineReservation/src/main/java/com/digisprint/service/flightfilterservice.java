@@ -9,14 +9,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import com.digisprint.model.Flight;
-import com.digisprint.repository.flightfilterrepository;
+import com.digisprint.repository.FlightFilterRepository;
 
 @Component
 @Service
 
-public class flightfilterservice {
+public class FlightFilterService {
 	@Autowired
-	flightfilterrepository flightfilterrepository;
+	FlightFilterRepository flightfilterrepository;
 	
 	public List<Flight> resultFilter(String data, String from, String to){
 		List<Flight> flight;
@@ -51,6 +51,13 @@ public class flightfilterservice {
 			List<Flight> sortedflights6=	flightfilterrepository.findAll(Sort.by("traveltime"));
 	
 			flight=sortedflights6.stream().filter(i->i.getStartsfrom().startsWith(from)&& i.getDestination().startsWith(to)).collect(Collectors.toList());
+		break;
+		
+		case("flightnumber"):
+			
+			List<Flight> sortedflights7=	flightfilterrepository.findAll(Sort.by("flightnumber"));
+	
+			flight=sortedflights7.stream().filter(i->i.getStartsfrom().startsWith(from)&& i.getDestination().startsWith(to)).collect(Collectors.toList());
 		break;
 		
 		default:

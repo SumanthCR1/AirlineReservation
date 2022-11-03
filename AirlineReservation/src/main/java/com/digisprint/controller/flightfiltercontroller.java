@@ -29,14 +29,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.digisprint.model.Flight;
-import com.digisprint.repository.Flightrepository;
-import com.digisprint.repository.flightfilterrepository;
+import com.digisprint.repository.FlightRepository;
+import com.digisprint.repository.FlightFilterRepository;
 import com.digisprint.service.FlightService;
-import com.digisprint.service.flightfilterservice;
+import com.digisprint.service.FlightFilterService;
 
 @Controller
 @Component
-public class flightfiltercontroller {
+public class FlightFilterController {
 
 	Flight flights;
 
@@ -44,7 +44,7 @@ public class flightfiltercontroller {
 	FlightService flightservice;
 
 	@Autowired
-	flightfilterservice flightfilterservice;
+	FlightFilterService flightfilterservice;
 
 
 	@PostMapping("/datadisplay")
@@ -68,10 +68,11 @@ public class flightfiltercontroller {
 
 	@PostMapping("/datadisplayafterlogin")
 	public ModelAndView filterafterlogin(@RequestParam("data") String data, HttpServletRequest request,
-			@RequestParam("from") String from, @RequestParam("to") String to, ModelMap map) {
+			@RequestParam("from") String from, @RequestParam("to") String to ,ModelMap map) {
 		System.out.println(data);
 		map.put("from", from);
 		map.put("to", to);
+		
 		List<Flight> flights = flightfilterservice.resultFilter(data, from, to);
 
 		ModelAndView mv = new ModelAndView("Loginsuccess");
@@ -109,11 +110,10 @@ public class flightfiltercontroller {
 		request.setAttribute("flightform", flights);
 		map.put("date", date);
 		map.put("number", number);
-
+	
 		model.setViewName("Confirmflight");
 
 		return model;
-
 	}
 
 	@GetMapping("confirmingdataafter")

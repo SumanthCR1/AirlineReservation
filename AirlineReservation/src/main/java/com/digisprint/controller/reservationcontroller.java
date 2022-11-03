@@ -16,7 +16,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,20 +29,20 @@ import com.digisprint.model.Reservation;
 
 import com.digisprint.service.LoginService;
 import com.digisprint.service.PassangerService;
-import com.digisprint.service.Reservationservice;
+import com.digisprint.service.ReservationService;
 
 @Controller
 @Component
-public class reservationcontroller {
+public class ReservationController {
 
 	@Autowired
-	Reservationservice reserveservice;
+	ReservationService reserveservice;
 
 	@Autowired
 	LoginService loginservice;
 	
 	@Autowired
-	flightfiltercontroller filtercontroller;
+	FlightFilterController filtercontroller;
 	
 	Flight flightlist;
 	String name;
@@ -67,22 +70,25 @@ public class reservationcontroller {
 	 Reservation result=reserveservice.booking(bookingid);
 	 
 	  ModelAndView mv= new ModelAndView("particularreservation");
-	//	request.setAttribute ("user", result);
+	//  request.setAttribute ("user", result);
 	  map.put("user", result);
 	  System.out.println("out");
 	  return mv;
 	  }
 	 
-
 	@GetMapping("/Checkout")
 	public String check(@RequestParam("number") int number1, @RequestParam("age") int age1,
 			@RequestParam("price") int price, @RequestParam("passangername") String passangername,
-			@RequestParam("date") Date date1, HttpServletRequest request, ModelMap map) {
+			@RequestParam("date") Date date1, HttpServletRequest request, 
+		ModelMap map) {
+		loginservice.getreservation(map);
 		System.out.println("i am here");
+		//System.out.println(firstname);
 		number = number1;
 		age = age1;
 		name = passangername;
 		date= date1;
+		
 		int total = number1 * price;
 		map.put("Total", total);
 		return "Confirmpayment";
@@ -96,11 +102,22 @@ public class reservationcontroller {
 			ModelMap map) {
 		// ModelMap str=loginservice.getreservation(map);
 		flightlist = filtercontroller.flights;
+		
+		System.out.println(flightlist);
 		System.out.println("Comming");
+		System.out.println(firstname);
 		System.out.println(flightlist.getFlightname());
 		return reserveservice.savedetails(flightlist.getFlightnumber(), flightlist.getFlightname(), flightlist.getStartsfrom(),
 				flightlist.getDestination(), flightlist.getArrivaltime(), flightlist.getDeparturetime(), name, age,
 				number, firstname, emailid, phonenumber,date, map);
+
+	}
+	@RequestMapping(value = "/deletehistory/{bookingID}", method = RequestMethod.GET)
+	public String delete(@PathVariable int bookingID) {
+
+		reserveservice.deleteflight(bookingID);
+
+		return "reservationcancelledsuccessful";
 
 	}
 
