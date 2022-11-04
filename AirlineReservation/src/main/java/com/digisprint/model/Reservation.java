@@ -18,129 +18,128 @@ public class Reservation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private int BookingID;
+	private int bookingID;
 	@Column
-	private int FlightNumber;
+	private int flightNumber;
 	@Column
-	private String FlightName;
+	private String flightName;
 	@Column
-	private String FlightStartsFrom;
+	private String flightStartsFrom;
 	@Column
-	private String Destination;
+	private String destination;
 	@Column
-	private Date BookedDate;
+	private Date bookedDate;
 	@Column
-	private Time ArrivalTime;
+	private Time arrivalTime;
 	@Column
-	private Time DepartureTime;
+	private Time departureTime;
 	@Column
-	private String PassangerName;
+	private String passangerName;
 	@Column
-	private int PassangerAge;
+	private int passangerAge;
 	@Column
-	private int NumberOfSeats;
+	private int numberOfSeats;
 	@Column
 	private String userName;
 	@Column
-	private String UserEmailid;
+	private String userEmailid;
 	@Column
-	private String UserPhoneNumber;
-	
+	private String userPhoneNumber;
 	
 	
 	public int getBookingID() {
-		return BookingID;
+		return bookingID;
 	}
 	public void setBookingID(int bookingID) {
-		BookingID = bookingID;
+		this.bookingID = bookingID;
 	}
 	public int getFlightNumber() {
-		return FlightNumber;
+		return flightNumber;
 	}
 	public void setFlightNumber(int flightNumber) {
-		FlightNumber = flightNumber;
+		this.flightNumber = flightNumber;
 	}
 	public String getFlightName() {
-		return FlightName;
+		return flightName;
 	}
 	public void setFlightName(String flightName) {
-		FlightName = flightName;
+		this.flightName = flightName;
 	}
 	public String getFlightStartsFrom() {
-		return FlightStartsFrom;
+		return flightStartsFrom;
 	}
 	public void setFlightStartsFrom(String flightStartsFrom) {
-		FlightStartsFrom = flightStartsFrom;
+		this.flightStartsFrom = flightStartsFrom;
 	}
 	public String getDestination() {
-		return Destination;
+		return destination;
 	}
 	public void setDestination(String destination) {
-		Destination = destination;
+		this.destination = destination;
 	}
 	public Date getBookedDate() {
-		return BookedDate;
+		return bookedDate;
 	}
 	public void setBookedDate(Date bookedDate) {
-		BookedDate = bookedDate;
+		this.bookedDate = bookedDate;
 	}
 	public Time getArrivalTime() {
-		return ArrivalTime;
+		return arrivalTime;
 	}
 	public void setArrivalTime(Time arrivalTime) {
-		ArrivalTime = arrivalTime;
+		this.arrivalTime = arrivalTime;
 	}
 	public Time getDepartureTime() {
-		return DepartureTime;
+		return departureTime;
 	}
 	public void setDepartureTime(Time departureTime) {
-		DepartureTime = departureTime;
+		this.departureTime = departureTime;
 	}
 	public String getPassangerName() {
-		return PassangerName;
+		return passangerName;
 	}
 	public void setPassangerName(String passangerName) {
-		PassangerName = passangerName;
+		this.passangerName = passangerName;
 	}
 	public int getPassangerAge() {
-		return PassangerAge;
+		return passangerAge;
 	}
 	public void setPassangerAge(int passangerAge) {
-		PassangerAge = passangerAge;
+		this.passangerAge = passangerAge;
 	}
 	public int getNumberOfSeats() {
-		return NumberOfSeats;
+		return numberOfSeats;
 	}
 	public void setNumberOfSeats(int numberOfSeats) {
-		NumberOfSeats = numberOfSeats;
+		this.numberOfSeats = numberOfSeats;
 	}
 	public String getUserName() {
 		return userName;
 	}
 	public void setUserName(String userName) {
-		userName = userName;
+		this.userName = userName;
 	}
 	public String getUserEmailid() {
-		return UserEmailid;
+		return userEmailid;
 	}
 	public void setUserEmailid(String userEmailid) {
-		UserEmailid = userEmailid;
+		this.userEmailid = userEmailid;
 	}
 	public String getUserPhoneNumber() {
-		return UserPhoneNumber;
+		return userPhoneNumber;
 	}
 	public void setUserPhoneNumber(String userPhoneNumber) {
-		UserPhoneNumber = userPhoneNumber;
+		this.userPhoneNumber = userPhoneNumber;
 	}
 	@Override
 	public String toString() {
-		return "Reservation [BookingID=" + BookingID + ", FlightNumber=" + FlightNumber + ", FlightName=" + FlightName
-				+ ", FlightStartsFrom=" + FlightStartsFrom + ", Destination=" + Destination + ", BookedDate="
-				+ BookedDate + ", ArrivalTime=" + ArrivalTime + ", DepartureTime=" + DepartureTime + ", PassangerName="
-				+ PassangerName + ", PassangerAge=" + PassangerAge + ", NumberOfSeats=" + NumberOfSeats + ", UserName="
-				+ userName + ", UserEmailid=" + UserEmailid + ", UserPhoneNumber=" + UserPhoneNumber + "]";
+		return "Reservation [bookingID=" + bookingID + ", flightNumber=" + flightNumber + ", flightName=" + flightName
+				+ ", flightStartsFrom=" + flightStartsFrom + ", destination=" + destination + ", bookedDate="
+				+ bookedDate + ", arrivalTime=" + arrivalTime + ", departureTime=" + departureTime + ", passangerName="
+				+ passangerName + ", passangerAge=" + passangerAge + ", numberOfSeats=" + numberOfSeats + ", userName="
+				+ userName + ", userEmailid=" + userEmailid + ", userPhoneNumber=" + userPhoneNumber + "]";
 	}
-
+	
 	
 	
 }

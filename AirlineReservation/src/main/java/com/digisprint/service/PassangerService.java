@@ -1,111 +1,79 @@
 package com.digisprint.service;
 
 import java.util.ArrayList;
-
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.ws.soap.server.endpoint.interceptor.PayloadRootSmartSoapEndpointInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.digisprint.model.Flight;
 import com.digisprint.model.Passanger;
 import com.digisprint.repository.PassangerRepository;
+
 @Component
 @Service
 public class PassangerService {
-	@Autowired
-	PassangerRepository passangerrepository;
-	
-	public String details(
-			@RequestParam("firstname") String firstname,
-			@RequestParam("lastname")String lastname,
-			@RequestParam("age") int age,
-			@RequestParam("gender") String gender,
-			@RequestParam("phonenumber") String phonenumber,
-			@RequestParam("contactaddress")String contactaddress,
-			@RequestParam("emailid")String emailid, 
-			@RequestParam("password")String password,
-			ModelMap modelMap) {
 
-	
-	Passanger user=new Passanger();
-	
+	PassangerRepository passangerRepository;
 
-	user.setId(user.getId());
-	user.setFirstname(firstname);
-	user.setLastname(lastname);
-	user.setAge(age);
-	user.setGender(gender);
-	user.setPhonenumber(phonenumber);
-	user.setContactaddress(contactaddress);
-	user.setEmailid(emailid);
-	user.setEmailid(emailid);
-	user.setPassword(password);
-	this.passangerrepository.save(user);
-	
-	
-	modelMap.put("id",user.getId());
-	modelMap.put("firstname",firstname);
-	modelMap.put("lastname", lastname);
-	modelMap.put("age", age);
-	modelMap.put("gender", gender);
-	modelMap.put("phonenumber", phonenumber);
-	modelMap.put("contactaddress", contactaddress);
-	modelMap.put("emailid", emailid);
-	modelMap.put("password", password);
-	
-return "viewpassanger";
+	public PassangerService(PassangerRepository passangerRepository) {
+
+		this.passangerRepository = passangerRepository;
+	}
+
+	public ModelAndView details(String firstName, String lastName, int age, String gender, String phoneNumber,
+			String contactAddress, String emailId, String password, ModelMap modelMap) {
+
+		Passanger user = new Passanger();
+
+		user.setId(user.getId());
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setAge(age);
+		user.setGender(gender);
+		user.setPhoneNumber(phoneNumber);
+		user.setContactAddress(contactAddress);
+		user.setEmailId(emailId);
+		user.setPassword(password);
+		this.passangerRepository.save(user);
+		modelMap.put("id", user.getId());
+		modelMap.put("firstName", firstName);
+		modelMap.put("lastName", lastName);
+		modelMap.put("age", age);
+		modelMap.put("gender", gender);
+		modelMap.put("phoneNumber", phoneNumber);
+		modelMap.put("contactAddress", contactAddress);
+		modelMap.put("emailId", emailId);
+		modelMap.put("password", password);
+
+		ModelAndView model = new ModelAndView("viewPassanger");
+		return model;
 
 	}
-	
 
-	public List<Passanger> userlist() {
-		  
-		  List<Passanger> user = new ArrayList<Passanger>();
-		  passangerrepository.findAll().forEach(user1 -> user.add(user1));
+	public List<Passanger> userList() {
+
+		List<Passanger> user = new ArrayList<Passanger>();
+		passangerRepository.findAll().forEach(users -> user.add(users));
 		return user;
-	
-}
-
-	
-
-	public void addpassanger(Passanger Pass) {
-		passangerrepository.save(Pass);
-		}
-	
-	
-/*
- * 
- * public void addpassanger(Passanger Pass) { passangerrepository.save(Pass);
- * 
- * }
- * 
- * public Passanger update(HttpServletRequest request) { Passanger
- * passanger=passangerrepository.findById(Integer.parseInt(request.getParameter(
- * "id"))); passanger.setFirstname(request.getParameter("id"));
- * passangerrepository.save(passanger); return passanger; }
- */
-	
-	public Passanger UpdateFlight(int id) {
-		return passangerrepository.findById(id);
 	}
-	
+
+	public void addPassanger(Passanger Passanger) {
+		passangerRepository.save(Passanger);
+	}
+
+	public Passanger updateFlight(int id) {
+		return passangerRepository.findById(id);
+	}
+
 	public void addBook(Passanger flight) {
-		passangerrepository.save(flight);
-	}
-	
-	public List<Passanger> getAllFlight(){
-		return (List<Passanger>) passangerrepository.findAll();
+		passangerRepository.save(flight);
 	}
 
+	public List<Passanger> getAllFlight() {
+		return (List<Passanger>) passangerRepository.findAll();
+	}
 
-	
-	
-	
 }

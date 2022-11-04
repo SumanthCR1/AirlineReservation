@@ -26,14 +26,14 @@ left: 80%;
 <h1> The Flight Details are:</h1>
 </center>
 
- <form class="test" action="/datadisplay" method="post" >
+ <form class="test" action="/dataDisplay" method="post" >
 
 <select name="data"  id="data">
   <option value="">Sort by </option>
-  <option value="arrivaltime">sort by time</option>
+  <option value="arrivalTime">sort by arrival time</option>
   <option value="price">sort by price</option>
-  <option value="numberofseatsavailable">sort by number of seats available</option>
-  <option value="flightname">sort by flight name</option>
+  <option value="numberOfSeatsAvailable">sort by number of seats available</option>
+  <option value="flightName">sort by flight name</option>
 </select>
 
 <input type= "hidden"  name="from" value="${from}">
@@ -71,20 +71,20 @@ left: 80%;
 
 
 
-<c:forEach items="${result}" var="x">  
+<c:forEach items="${result}" var="flight">  
   <tr>
   
-    <td>${x.flightnumber}</td> 
-    <td>${x.flightname}</td>  
-	<td>${x.startsfrom}</td>
-	<td>${x.destination}</td>
-	<td>${x.arrivaltime}</td>
-	<td>${x.departuretime}</td>
-	<td>${x.traveltime}</td>
-	<td>${x.totalcapacity}</td>
-	<td>${x.numberofseatsavailable}</td>
-	<td>${x.typesofseatsavailable}</td>
-	<td>${x.price}</td>
+    <td>${flight.flightNumber}</td> 
+    <td>${flight.flightName}</td>  
+	<td>${flight.startsFrom}</td>
+	<td>${flight.destination}</td>
+	<td>${flight.arrivalTime}</td>
+	<td>${flight.departureTime}</td>
+	<td>${flight.travelTime}</td>
+	<td>${flight.totalCapacity}</td>
+	<td>${flight.numberOfSeatsAvailable}</td>
+	<td>${flight.typesOfSeatsAvailable}</td>
+	<td>${flight.price}</td>
      
     
 </c:forEach>

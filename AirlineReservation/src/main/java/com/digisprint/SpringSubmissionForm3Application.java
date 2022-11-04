@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 
-
 public class SpringSubmissionForm3Application {
 
 	public static void main(String[] args) {

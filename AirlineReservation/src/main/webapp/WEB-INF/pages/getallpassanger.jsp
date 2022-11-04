@@ -53,11 +53,11 @@ body {
 
 		<a >Welcome to AirFly</a> 
 		
-		<a href="fetchreservedpassangerdetails">ReservedPassengerData</a> 
+		<a href="fetchReservedPassangerDetails">ReservedPassengerData</a> 
 		<a class="admin" href="index" style="background-color: red;"> Logout</a>
 
 	</div><br><br>
-<form action="fetchflightdetailsfromadmin">
+<form action="fetchFlightDetailsFromAdmin">
 <input type="submit" value="GoBack">
 </form>
 
@@ -91,13 +91,13 @@ body {
   <tr>
 
    <td>${x.id} </td> 
-    <td>${x.firstname}</td>  
-	<td>${x.lastname}</td>
+    <td>${x.firstName}</td>  
+	<td>${x.lastName}</td>
 	<td>${x.age}</td>
 	<td>${x.gender}</td>
-	<td>${x.phonenumber}</td>
-	<td>${x.contactaddress}</td>
-	<td>${x.emailid}</td>
+	<td>${x.phoneNumber}</td>
+	<td>${x.contactAddress}</td>
+	<td>${x.emailId}</td>
 	</tr>
 
  </c:forEach>

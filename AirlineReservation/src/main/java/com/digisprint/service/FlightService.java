@@ -9,8 +9,10 @@ import java.util.stream.Collectors;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.digisprint.model.*;
 import com.digisprint.repository.FlightRepository;
@@ -19,61 +21,59 @@ import com.digisprint.repository.FlightRepository;
 @Service
 public class FlightService {
 
-	@Autowired
-	FlightRepository flightrepository;
+	FlightRepository flightRepository;
 
-	public List<Flight> flightlist() {
+	public FlightService(FlightRepository flightRepository) {
+	
+		this.flightRepository = flightRepository;
+	}
+	public List<Flight> allFlightList() {
 		  
 		  List<Flight> flight = new ArrayList<Flight>();
-		  flightrepository.findAll().forEach(flight1 -> flight.add(flight1));
+		  flightRepository.findAll().forEach(flights -> flight.add(flights));
 		return flight;
 	
 }
-	public String addflights(@RequestParam("flightnumber") int flightnumber, @RequestParam("flightname") String flightname,
-			@RequestParam("startsfrom") String startsfrom, @RequestParam("destination") String destination,
-			@RequestParam("arrivaltime") Time arrivaltime, @RequestParam("departuretime") Time departuretime,
-			@RequestParam("traveltime") Time traveltime, @RequestParam("totalcapacity") int totalcapacity,
-			@RequestParam("numberofseatsavailable") int numberofseatsavailable, @RequestParam("typesofseatsavailable") String typesofseatsavailable,
-			 @RequestParam("price") int price, ModelMap map) {
+	public ModelAndView addFlights(int flightNumber, String flightName, String startsFrom, String destination,
+			Time arrivalTime, Time departureTime, Time travelTime, int totalCapacity,
+			 int numberOfSeatsAvailable, String typesOfSeatsAvailable, int price, ModelMap map) {
 
 		Flight flight=new Flight();
 		
-
-		flight.setFlightnumber(flightnumber);
-		flight.setFlightname(flightname);
-		flight.setStartsfrom(startsfrom);
+		flight.setFlightNumber(flightNumber);
+		flight.setFlightName(flightName);
+		flight.setStartsFrom(startsFrom);
 		flight.setDestination(destination);
-		flight.setArrivaltime(arrivaltime);
-		flight.setDeparturetime(departuretime);
-		flight.setTraveltime(traveltime);
-		flight.setTotalcapacity(totalcapacity);
-		flight.setNumberofseatsavailable(numberofseatsavailable);
-		flight.setTypesofseatsavailable(typesofseatsavailable);
+		flight.setArrivalTime(arrivalTime);
+		flight.setDepartureTime(departureTime);
+		flight.setTravelTime(travelTime);
+		flight.setTotalCapacity(totalCapacity);
+		flight.setNumberOfSeatsAvailable(numberOfSeatsAvailable);
+		flight.setTypesOfSeatsAvailable(typesOfSeatsAvailable);
 		flight.setPrice(price);
 		
-		this.flightrepository.save(flight);
+		this.flightRepository.save(flight);
 		
-		map.put("flightnumber", flightnumber);
-		map.put("flightname",flightname);
-		map.put("startsfrom", startsfrom);
+		map.put("flightNumber", flightNumber);
+		map.put("flightName",flightName);
+		map.put("startsFrom", startsFrom);
 		map.put("destination", destination);
-		map.put("arrivaltime", arrivaltime);
-		map.put("departuretime", departuretime);
-		map.put("traveltime", traveltime);
-		map.put("totalcapacity", totalcapacity);
-		map.put("numberofseatsavailable", numberofseatsavailable);
-		map.put("typesofseatsavailable", typesofseatsavailable);
+		map.put("arrivalTime", arrivalTime);
+		map.put("departureTime", departureTime);
+		map.put("travelTime", travelTime);
+		map.put("totalCapacity", totalCapacity);
+		map.put("numberOfSeatsAvailable", numberOfSeatsAvailable);
+		map.put("typesOfSeatsAvailable", typesOfSeatsAvailable);
 		map.put("price", price);
 		
-		
-		return "flightaddedsuccess";
-		
+		ModelAndView madel= new ModelAndView("flightAddedSuccess");
+		return madel;
 		
 	}
 	public List<Flight> flightlistfilter(String from, String to) {
 
 		  List<Flight> flight = new ArrayList<Flight>();
-		  flightrepository.findAll().forEach(flight1 -> flight.add(flight1));
+		  flightRepository.findAll().forEach(flights -> flight.add(flights));
 		
 		return flight;
 	}

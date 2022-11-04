@@ -34,97 +34,84 @@ import com.digisprint.repository.FlightFilterRepository;
 import com.digisprint.service.FlightService;
 import com.digisprint.service.FlightFilterService;
 
-@Controller
-@Component
+@RestController
+
 public class FlightFilterController {
 
 	Flight flights;
+	FlightService flightService;
+	FlightFilterService flightFilterService;
 
-	@Autowired
-	FlightService flightservice;
+	public FlightFilterController(FlightService flightService, FlightFilterService flightFilterService) {
 
-	@Autowired
-	FlightFilterService flightfilterservice;
+		this.flightService = flightService;
+		this.flightFilterService = flightFilterService;
+	}
+	
 
-
-	@PostMapping("/datadisplay")
-	public ModelAndView filterdata(@RequestParam("data") String data, HttpServletRequest request,
+	@PostMapping("/dataDisplay")
+	public ModelAndView filterData(@RequestParam("data") String data, HttpServletRequest request,
 			@RequestParam("from") String from, @RequestParam("to") String to, ModelMap map) {
 
-		System.out.println(data);
-		System.out.println(from);
-		System.out.println(to);
-	
 		map.put("from", from);
 		map.put("to", to);
-		List<Flight> flights = flightfilterservice.resultFilter(data, from, to);
-		
-		ModelAndView mv = new ModelAndView("getflight");
-
+		List<Flight> flights = flightFilterService.resultFilter(data, from, to);	
+		ModelAndView model = new ModelAndView("getFlight");
 		request.setAttribute("result", flights);
-
-		return mv;
-	}
-
-	@PostMapping("/datadisplayafterlogin")
-	public ModelAndView filterafterlogin(@RequestParam("data") String data, HttpServletRequest request,
-			@RequestParam("from") String from, @RequestParam("to") String to ,ModelMap map) {
-		System.out.println(data);
-		map.put("from", from);
-		map.put("to", to);
-		
-		List<Flight> flights = flightfilterservice.resultFilter(data, from, to);
-
-		ModelAndView mv = new ModelAndView("Loginsuccess");
-
-		request.setAttribute("resultlogin", flights);
-
-		return mv;
-	}
-
-	@PostMapping("/filterafterlogin")
-	public ModelAndView datafilterafterlogin(@RequestParam("data") String data, HttpServletRequest request,
-			@RequestParam("from") String from, @RequestParam("to") String to) {
-
-		System.out.println(data);
-
-		List<Flight> flights = flightfilterservice.resultFilter(data, from, to);
-
-		ModelAndView mv = new ModelAndView("Loginsuccess");
-
-		request.setAttribute("resultlogin", flights);
-
-		return mv;
-	}
-
-	@PostMapping("/Searchstatus/{flightnumber}")
-
-	public ModelAndView flightstatus(@PathVariable int flightnumber, HttpServletRequest request, ModelMap map,
-			@RequestParam("number") int number, @RequestParam("date") Date date) {
-		System.out.println("Search");
-		System.out.println(flightnumber);
-		ModelAndView model = new ModelAndView("Confirmflight");
-		flights=flightfilterservice.find(flightnumber);
-	
-		System.out.println(flights);
-		request.setAttribute("flightform", flights);
-		map.put("date", date);
-		map.put("number", number);
-	
-		model.setViewName("Confirmflight");
 
 		return model;
 	}
 
-	@GetMapping("confirmingdataafter")
-	public ModelMap flightconfirmdatafinal(ModelMap map) {
+	@PostMapping("/dataDisplayAfterLogin")
+	public ModelAndView filterAfterLogin(@RequestParam("data") String data, HttpServletRequest request,
+			@RequestParam("from") String from, @RequestParam("to") String to ,ModelMap map) {
+	
+		map.put("from", from);
+		map.put("to", to);
+		
+		List<Flight> flights = flightFilterService.resultFilter(data, from, to);
 
-		map.put("number", flights.getFlightnumber());
-		map.put("name", flights.getFlightname());
-		map.put("starts", flights.getStartsfrom());
+		ModelAndView model = new ModelAndView("loginSuccess");
+
+		request.setAttribute("resultlogin", flights);
+
+		return model;
+	}
+
+	@PostMapping("/filterAfterLogin")
+	public ModelAndView dataFilterAfterLogin(@RequestParam("data") String data, HttpServletRequest request,
+			@RequestParam("from") String from, @RequestParam("to") String to) {
+		
+		List<Flight> flights = flightFilterService.resultFilter(data, from, to);
+		ModelAndView model = new ModelAndView("loginSuccess");
+		request.setAttribute("resultlogin", flights);
+
+		return model;
+	}
+
+	@PostMapping("/searchStatus/{flightNumber}")
+
+	public ModelAndView flightstatus(@PathVariable int flightNumber, HttpServletRequest request, ModelMap map,
+			@RequestParam("number") int number, @RequestParam("date") Date date) {
+		System.out.println("Hello");
+		ModelAndView model = new ModelAndView("confirmFlight");
+		flights=flightFilterService.find(flightNumber);
+		request.setAttribute("flightform", flights);
+		map.put("date", date);
+		map.put("number", number);
+	
+		return model;
+	}
+
+	@GetMapping("confirmingDataAfter")
+	public ModelMap flightConfirmDataFinal(ModelMap map) {
+
+		map.put("number", flights.getFlightNumber());
+		map.put("name", flights.getFlightName());
+		map.put("starts", flights.getStartsFrom());
 		map.put("destination", flights.getDestination());
-		map.put("arrivaltime", flights.getArrivaltime());
-		map.put("departuretime", flights.getDeparturetime());
+		map.put("arrivaltime", flights.getArrivalTime());
+		map.put("departuretime", flights.getDepartureTime());
 		map.put("price", flights.getPrice());
 		return map;
 

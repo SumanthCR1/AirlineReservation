@@ -14,7 +14,7 @@ Flight added successfully..
 <br><br>
 <h2>To Go to Admin Home Page</h2>
 
-<form action="/fetchflightdetailsfromadmin" >
+<form action="/fetchFlightDetailsFromAdmin" >
 <input type="submit" value="Click Here...">
 </form>
 </center>

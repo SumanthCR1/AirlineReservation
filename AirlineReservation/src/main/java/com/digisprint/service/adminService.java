@@ -20,34 +20,34 @@ import com.digisprint.repository.AdminRepository;
 @Service
 public class AdminService {
 
-	@Autowired
-	FlightRepository flightrepository;
-	
-	@Autowired
-	AdminRepository adminrepo;
 
-	public boolean validate(String name, String password) {
-		System.out.println("Comming in");
-	
-       
-        return name.equals("Admin")&&password.equals("123");
-       
-}
-	
-	public void DeleteFlight(int flightnumber) {
-		adminrepo.deleteById(flightnumber);
+	FlightRepository flightRepository;
+	AdminRepository adminRepository;
+
+
+	public AdminService(FlightRepository flightRepository, AdminRepository adminRepository) {
+		this.flightRepository = flightRepository;
+		this.adminRepository = adminRepository;
 	}
 
-	public Flight UpdateFlight(int flightnumber) {
-		return adminrepo.findById(flightnumber).get();
+	public boolean validate(String name, String password) {
+        return name.equals("Admin")&&password.equals("123");
+}
+	
+	public void deleteFlight(int flightNumber) {
+		adminRepository.deleteById(flightNumber);
+	}
+
+	public Flight UpdateFlight(int flightNumber) {
+		return adminRepository.findById(flightNumber).get();
 	}
 	
 	public void addBook(Flight flight) {
-		adminrepo.save(flight);
+		adminRepository.save(flight);
 	}
 	
 	public List<Flight> getAllFlight(){
-		return (List<Flight>) adminrepo.findAll();
+		return (List<Flight>) adminRepository.findAll();
 	}
 	
 	}

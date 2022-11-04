@@ -41,10 +41,6 @@
 	left: 85%;
 	}
 
-body {
-	background-image: url("images/aeroplane1.jpg");
-	background-size: cover;
-}
 </style>
 
 </head>
@@ -52,13 +48,13 @@ body {
 
 	<div class="topnav">
 
-		<a href="/fetchflightdetailslogin" style="background-color: green;">GoToHomePage</a>
+		<a href="/fetchFlightDetailsLogin" style="background-color: green;">GoToHomePage</a>
 		<a>Welcome to AirFly</a>
-		 <a class="profile" href="userprofile">UserProfile</a> 
+		 <a class="profile" href="userProfile">UserProfile</a> 
 		<a class="admin" href="index" style="background-color: red;"> Logout</a>
 
 	</div><br><br>
-<form action="/fetchflightdetailslogin">	
+<form action="/fetchFlightDetailsLogin">	
 <input type="submit" value="GoToBackPage">
 </form>
 	<center>
@@ -66,17 +62,17 @@ body {
 
 		<h1>The Flight Details are:</h1>
 	</center>
- <form class="test" action="/datadisplayafterlogin" method="post" >
+ <form class="test" action="/dataDisplayAfterLogin" method="post" >
  
 
 <select name="data"  id="data">
   <option value="">sort by </option>
-  <option value="arrivaltime">sort by arrival time</option>
+  <option value="arrivalTime">sort by arrival time</option>
   <option value="price">sort by price</option>
-  <option value="numberofseatsavailable">sort by number of seats available</option>
-  <option value="flightname">sort by flight name</option>
-  <option value="flightnumber">sort by flight number</option>
-  <option value="traveltime">sort by travel time</option>
+  <option value="numberOfSeatsAvailable">sort by number of seats available</option>
+  <option value="flightName">sort by flight name</option>
+  <option value="flightNumber">sort by flight number</option>
+  <option value="travelTime">sort by travel time</option>
 </select>
 <input type= "hidden"  name="from" value="${from}">
 <input type= "hidden"  name="to" value="${to}">
@@ -95,17 +91,17 @@ body {
  <table border = "1" width = "100%">
 <thead>
 <tr>
-<th >flightnumber</th> 
-<th>flightname</th>
-<th>startsfrom</th>
-<th>destination</th>
-<th>arrivaltime</th>
-<th>departuretime</th>
-<th>traveltime</th>
-<th>totalcapacity</th>
-<th>numberofseatsavailable</th>
-<th>typesofseatsavailable</th>
-<th>price</th>
+<th >Flightnumber</th> 
+<th>Flightname</th>
+<th>Startsfrom</th>
+<th>Destination</th>
+<th>Arrivaltime</th>
+<th>Departuretime</th>
+<th>Traveltime</th>
+<th>Totalcapacity</th>
+<th>Numberofseatsavailable</th>
+<th>Typesofseatsavailable</th>
+<th>Price</th>
 
 </tr>
 </thead>
@@ -113,24 +109,24 @@ body {
 
 
 
-<c:forEach items="${resultlogin}" var="x">  
+<c:forEach items="${resultlogin}" var="user">  
   
   <tr>
 
-   <td>${x.flightnumber} </td> 
-    <td>${x.flightname}</td>  
-	<td>${x.startsfrom}</td>
-	<td>${x.destination}</td>
-	<td>${x.arrivaltime}</td>
-	<td>${x.departuretime}</td>
-	<td>${x.traveltime}</td>
-	<td>${x.totalcapacity}</td>
-	<td>${x.numberofseatsavailable}</td>
-	<td>${x.typesofseatsavailable}</td>
-	<td>${x.price}</td>
+   <td>${user.flightNumber} </td> 
+    <td>${user.flightName}</td>  
+	<td>${user.startsFrom}</td>
+	<td>${user.destination}</td>
+	<td>${user.arrivalTime}</td>
+	<td>${user.departureTime}</td>
+	<td>${user.travelTime}</td>
+	<td>${user.totalCapacity}</td>
+	<td>${user.numberOfSeatsAvailable}</td>
+	<td>${user.typesOfSeatsAvailable}</td>
+	<td>${user.price}</td>
 	
 	 <td>
-      <form action="/Searchstatus/${x.flightnumber}" method="post">	
+      <form action="/searchStatus/${user.flightNumber}" method="post">	
        <input type= "hidden"  name="number" value="${number}">
        <input type= "hidden"  name="date" value="${date}">
 		<input type="submit" value="BOOK">

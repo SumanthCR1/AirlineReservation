@@ -46,8 +46,8 @@
 	<div class="topnav">
 
 		<a >Welcome to AirFly</a> 
-		<a href="fetchpassangerdetails">UserData</a> 
-		<a href="fetchreservedpassangerdetails">ReservedPassengerData</a> 
+		<a href="fetchPassangerDetails">UserData</a> 
+		<a href="fetchReservedPassangerDetails">ReservedPassengerData</a> 
 		<a class="admin" href="index" style="background-color: red"> Logout</a>
 
 	</div>
@@ -57,7 +57,7 @@
 
 		<h1>The Flight Details are:</h1>
 	
-  <form action="/addflight1st">
+  <form action="/fetchFlights">
 
 <input class="addflight" type="submit" value="Add New Flight" style="background-color: green; color: white;height:40px; width: 150px">
 
@@ -84,30 +84,30 @@
 </thead>
 <tbody>
 
-<c:forEach items="${fromadmin}" var="x">  
+<c:forEach items="${fromAdmin}" var="flight">  
   <tr>
 
-   <td>${x.flightnumber}</td> 
-    <td>${x.flightname}</td>  
-	<td>${x.startsfrom}</td>
-	<td>${x.destination}</td>
-	<td>${x.arrivaltime}</td>
-	<td>${x.departuretime}</td>
-	<td>${x.traveltime}</td>
-	<td>${x.totalcapacity}</td>
-	<td>${x.numberofseatsavailable}</td>
-	<td>${x.typesofseatsavailable}</td>
-	<td>${x.price}</td>
+   <td>${flight.flightNumber}</td> 
+    <td>${flight.flightName}</td>  
+	<td>${flight.startsFrom}</td>
+	<td>${flight.destination}</td>
+	<td>${flight.arrivalTime}</td>
+	<td>${flight.departureTime}</td>
+	<td>${flight.travelTime}</td>
+	<td>${flight.totalCapacity}</td>
+	<td>${flight.numberOfSeatsAvailable}</td>
+	<td>${flight.typesOfSeatsAvailable}</td>
+	<td>${flight.price}</td>
 	 <td>
-       <spring:url value="editFlight123/${x.flightnumber}" var="editURL" />
+       <spring:url value="editFlight/${flight.flightNumber}" var="editURL" />
        <a href="${editURL}" role="button">Update</a>
       </td>
       	
 	<td>
-       <spring:url value="/deleteflight/${x.flightnumber}" var="deleteURL" />
+       <spring:url value="/deleteFlight/${flight.flightNumber}" var="deleteURL" />
        <a class="btn btn-danger" href="${deleteURL}" role="button" >Delete</a>
       </td>
-       <input type= "hidden"  name="flightnumber" value="${flightnumber}">
+       <input type= "hidden"  name="flightNumber" value="${flight.flightNumber}">
 	
 
 </c:forEach>

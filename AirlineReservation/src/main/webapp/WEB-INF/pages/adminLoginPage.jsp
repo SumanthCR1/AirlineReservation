@@ -16,9 +16,9 @@
 <fieldset style="width: 400px">
 <br><br>
 
-<form method="post" action="adminlogin">
-Enter User Name:<input type="text" name=username><br><br>
-Enter Admin Password:<input type="password" name="adminpassword"><br><br>
+<form method="post" action="adminLogin">
+Enter User Name:<input type="text" name=userName><br><br>
+Enter Admin Password:<input type="password" name="adminPassword"><br><br>
 
 <input type="submit" value="LOGIN">
 </form>

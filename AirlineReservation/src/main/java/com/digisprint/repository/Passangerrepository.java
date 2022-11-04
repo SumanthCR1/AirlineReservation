@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.digisprint.model.Passanger;
 @Repository
 public interface PassangerRepository extends JpaRepository<Passanger,Integer> {
-	Passanger findByfirstname(String firstname);
+	Passanger findByfirstName(String firstName);
 	
 	Passanger findById(int Id);
 }

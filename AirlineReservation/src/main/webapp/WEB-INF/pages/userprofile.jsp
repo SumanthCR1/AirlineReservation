@@ -41,32 +41,32 @@
 
 	<div class="topnav">
 
-		<a href="/fetchflightdetailslogin" style="background-color: green;">GoToHomePage</a>
+		<a href="/fetchFlightDetailsLogin" style="background-color: green;">GoToHomePage</a>
 		<a>Welcome to AirFly</a>
-		 <a class="profile" href="userprofile">UserProfile</a> 
+		 <a class="profile" href="userProfile">UserProfile</a> 
 		<a class="admin" href="index" style="background-color: red;"> Logout</a>
 
 	</div><br>
 
-<form action="/fetchflightdetailslogin" >
+<form action="/fetchFlightDetailsLogin" >
 <input type="submit" value="GoToBackPage">
 </form>
 <center>
 
-<h1>Hello  ${user.firstname}</h1><br>
+<h1>Hello  ${user.firstName}</h1><br>
 <h2>Your Profile Details are:</h2>
 
 <fieldset style="width: 1000px">
 
-<h3>FirstName:	${user.firstname }</h3>
-<h3>LastName:	${user.lastname }</h3>	
-<h3>EmailId:	${user.emailid }</h3>	
-<h3>Phone number:	${user.phonenumber }</h3>	
-<h3>Contact address:	${user.contactaddress }</h3><br>
+<h3>FirstName:	${user.firstName }</h3>
+<h3>LastName:	${user.lastName }</h3>	
+<h3>EmailId:	${user.emailId }</h3>	
+<h3>Phone number:	${user.phoneNumber }</h3>	
+<h3>Contact address:	${user.contactAddress }</h3><br>
 
- <form action="/Searchbookedhistory" method="get">
+ <form action="/searchBookedHistory" method="get">
 
-<input type="hidden" name="userName" value="${user.firstname }"></input>
+<input type="hidden" name="userName" value="${user.firstName }"></input>
 
 <input type="submit" value="Go To Booked History" style="width: 150px"><br><br>
 </form>

@@ -9,170 +9,113 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table
+@Table(name="flight")
 public class Flight {
 
-	
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private int flightnumber;
+	private int flightNumber;
 	@Column
-	private String flightname;
+	private String flightName;
 	@Column
-	private String startsfrom;
+	private String startsFrom;
 	@Column
 	private String destination;
 	@Column
-	private Time arrivaltime;
+	private Time arrivalTime;
 	@Column
-	private Time departuretime;
+	private Time departureTime;
 	@Column
-	private Time traveltime;
+	private Time travelTime;
 	@Column
-	private int totalcapacity;
+	private int totalCapacity;
 	@Column
-	private int numberofseatsavailable;
+	private int numberOfSeatsAvailable;
 	@Column
-	private String typesofseatsavailable;
-	@Column
-	private int price;
+	private String typesOfSeatsAvailable;
 	
 	
-
-	public int getFlightnumber() {
-		return flightnumber;
+	public int getFlightNumber() {
+		return flightNumber;
 	}
-	public void setFlightnumber(int flightnumber) {
-		this.flightnumber = flightnumber;
+	public void setFlightNumber(int flightNumber) {
+		this.flightNumber = flightNumber;
 	}
-	public String getFlightname() {
-		return flightname;
+	public String getFlightName() {
+		return flightName;
 	}
-	public void setFlightname(String flightname) {
-		this.flightname = flightname;
+	public void setFlightName(String flightName) {
+		this.flightName = flightName;
 	}
-
-
-
-	public String getStartsfrom() {
-		return startsfrom;
+	public String getStartsFrom() {
+		return startsFrom;
 	}
-
-
-
-	public void setStartsfrom(String startsfrom) {
-		this.startsfrom = startsfrom;
+	public void setStartsFrom(String startsFrom) {
+		this.startsFrom = startsFrom;
 	}
-
-
-
 	public String getDestination() {
 		return destination;
 	}
-
-
-
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
-
-
-
-	public Time getArrivaltime() {
-		return arrivaltime;
+	public Time getArrivalTime() {
+		return arrivalTime;
 	}
-
-
-
-	public void setArrivaltime(Time arrivaltime) {
-		this.arrivaltime = arrivaltime;
+	public void setArrivalTime(Time arrivalTime) {
+		this.arrivalTime = arrivalTime;
 	}
-
-
-
-	public Time getDeparturetime() {
-		return departuretime;
+	public Time getDepartureTime() {
+		return departureTime;
 	}
-
-
-
-	public void setDeparturetime(Time departuretime) {
-		this.departuretime = departuretime;
+	public void setDepartureTime(Time departureTime) {
+		this.departureTime = departureTime;
 	}
-
-
-
-	public Time getTraveltime() {
-		return traveltime;
+	public Time getTravelTime() {
+		return travelTime;
 	}
-
-
-
-	public void setTraveltime(Time traveltime) {
-		this.traveltime = traveltime;
+	public void setTravelTime(Time travelTime) {
+		this.travelTime = travelTime;
 	}
-
-
-
-	public int getTotalcapacity() {
-		return totalcapacity;
+	public int getTotalCapacity() {
+		return totalCapacity;
 	}
-
-
-
-	public void setTotalcapacity(int totalcapacity) {
-		this.totalcapacity = totalcapacity;
+	public void setTotalCapacity(int totalCapacity) {
+		this.totalCapacity = totalCapacity;
 	}
-
-
-
-	public int getNumberofseatsavailable() {
-		return numberofseatsavailable;
+	public int getNumberOfSeatsAvailable() {
+		return numberOfSeatsAvailable;
 	}
-
-
-
-	public void setNumberofseatsavailable(int numberofseatsavailable) {
-		this.numberofseatsavailable = numberofseatsavailable;
+	public void setNumberOfSeatsAvailable(int numberOfSeatsAvailable) {
+		this.numberOfSeatsAvailable = numberOfSeatsAvailable;
 	}
-
-
-
-	public String getTypesofseatsavailable() {
-		return typesofseatsavailable;
+	public String getTypesOfSeatsAvailable() {
+		return typesOfSeatsAvailable;
 	}
-
-
-
-	public void setTypesofseatsavailable(String typesofseatsavailable) {
-		this.typesofseatsavailable = typesofseatsavailable;
+	public void setTypesOfSeatsAvailable(String typesOfSeatsAvailable) {
+		this.typesOfSeatsAvailable = typesOfSeatsAvailable;
 	}
-
-
-
 	public int getPrice() {
 		return price;
 	}
-
-
-
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
+	@Column
+	private int price;
 
 
 	@Override
 	public String toString() {
-		return "FlightController [flightnumber=" + flightnumber + ", flightname=" + flightname + ", startsfrom="
-				+ startsfrom + ", destination=" + destination + ", arrivaltime=" + arrivaltime + ", departuretime="
-				+ departuretime + ", traveltime=" + traveltime + ", totalcapacity=" + totalcapacity
-				+ ", numberofseatsavailable=" + numberofseatsavailable + ", typesofseatsavailable="
-				+ typesofseatsavailable + ", price=" + price + "]";
+		return "Flight [flightNumber=" + flightNumber + ", flightName=" + flightName + ", startsFrom=" + startsFrom
+				+ ", destination=" + destination + ", arrivalTime=" + arrivalTime + ", departureTime=" + departureTime
+				+ ", travelTime=" + travelTime + ", totalCapacity=" + totalCapacity + ", numberOfSeatsAvailable="
+				+ numberOfSeatsAvailable + ", typesOfSeatsAvailable=" + typesOfSeatsAvailable + ", price=" + price
+				+ "]";
 	}
-	
 
+
+	
 }

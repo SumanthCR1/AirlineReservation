@@ -19,19 +19,19 @@ public class Passanger {
 	@Column
 	private int id;
 	@Column
-	private String firstname;
+	private String firstName;
 	@Column
-	private String lastname;
+	private String lastName;
 	@Column
 	private int age;
 	@Column
 	private String gender;
 	@Column
-	private String phonenumber;
+	private String phoneNumber;
 	@Column
-	private String contactaddress;
+	private String contactAddress;
 	@Column
-	private String emailid;
+	private String emailId;
 	@Column
 	private String password;
 	public int getId() {
@@ -40,17 +40,17 @@ public class Passanger {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public int getAge() {
 		return age;
@@ -64,23 +64,23 @@ public class Passanger {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getPhonenumber() {
-		return phonenumber;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
-	public void setPhonenumber(String phonenumber) {
-		this.phonenumber = phonenumber;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
-	public String getContactaddress() {
-		return contactaddress;
+	public String getContactAddress() {
+		return contactAddress;
 	}
-	public void setContactaddress(String contactaddress) {
-		this.contactaddress = contactaddress;
+	public void setContactAddress(String contactAddress) {
+		this.contactAddress = contactAddress;
 	}
-	public String getEmailid() {
-		return emailid;
+	public String getEmailId() {
+		return emailId;
 	}
-	public void setEmailid(String emailid) {
-		this.emailid = emailid;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 	public String getPassword() {
 		return password;
@@ -90,10 +90,11 @@ public class Passanger {
 	}
 	@Override
 	public String toString() {
-		return "Passanger [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", age=" + age
-				+ ", gender=" + gender + ", phonenumber=" + phonenumber + ", contactaddress=" + contactaddress
-				+ ", emailid=" + emailid + ", password=" + password + "]";
+		return "Passanger [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age
+				+ ", gender=" + gender + ", phoneNumber=" + phoneNumber + ", contactAddress=" + contactAddress
+				+ ", emailId=" + emailId + ", password=" + password + "]";
 	}
+	
 	
 
 }

@@ -37,14 +37,14 @@
 <body>
 <div class="topnav">
 
-		<a href="/fetchflightdetailslogin" style="background-color: green;">GoToHomePage</a>
+		<a href="/fetchFlightDetailsLogin" style="background-color: green;">GoToHomePage</a>
 		<a>Welcome to AirFly</a>
-		 <a class="profile" href="/userprofile">UserProfile</a> 
+		 <a class="profile" href="/userProfile">UserProfile</a> 
 		<a class="admin" href="index" style="background-color: red;"> Logout</a>
 
 	</div><br><br>
 	
-<form action="/fetchflightdetailslogin">
+<form action="/fetchFlightDetailsLogin">
 <input type="submit" value="GoToBackPage">
 </form>
 
@@ -55,12 +55,11 @@
 <h1>Your Total Payment is:</h1>
 
 <h2>${Total}/-</h2>
-${firstname} hello
 
-<form action="/Confirmed">
-<input type="hidden" name="firstname" value="${firstname}">
-<input  type= "hidden" name="emailid" value="${emailid}">
-<input  type= "hidden" name="phonenumber" value="${phonenumber}">
+<form action="/confirmedReservation">
+<input type="hidden" name="firstName" value="${firstName}">
+<input  type= "hidden" name="emailId" value="${emailId}">
+<input  type= "hidden" name="phoneNumber" value="${phoneNumber}">
 <input type="submit" value="PayTheBill" style="background-color: blue; color:white; height: 40px">
 </form>
 

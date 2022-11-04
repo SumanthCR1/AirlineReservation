@@ -13,6 +13,6 @@ import com.digisprint.model.Flight;
 @Repository
 public interface FlightRepository  extends JpaRepository<Flight,Integer> {
 	
-	public List <Flight> findAllByflightnumber(int flightno);
+	public List <Flight> findAllByflightNumber(int flightNumber);
 
 }

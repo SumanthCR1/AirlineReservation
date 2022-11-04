@@ -8,6 +8,6 @@ import com.digisprint.model.Passanger;
 @Repository
 public interface LoginRepository extends JpaRepository<Passanger,Integer>{
 	
-	Passanger findByFirstnameAndPassword(String firstname, String password);
+	Passanger findByFirstNameAndPassword(String firstName, String password);
 	
 }

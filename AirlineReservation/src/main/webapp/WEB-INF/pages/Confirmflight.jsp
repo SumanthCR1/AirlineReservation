@@ -36,9 +36,9 @@
 <body>
 
 <div class="topnav">
-		<a href="/fetchflightdetailslogin" style="background-color: green;">GoToHomePage</a>
+		<a href="/fetchFlightDetailsLogin" style="background-color: green;">GoToHomePage</a>
 		<a>Welcome to AirFly</a>
-		 <a class="profile" href="/userprofile">UserProfile</a> 
+		 <a class="profile" href="/userProfile">UserProfile</a> 
 		<a class="admin" href="/index" style="background-color: red;"> Logout</a>
 	</div>
 	
@@ -46,7 +46,7 @@
 	
 	<br><br>
 	
-<form action="/fetchflightdetailslogin">
+<form action="/fetchFlightDetailsLogin">
 <input type="submit" value="GoToBackPage">
 </form>
 	<center>
@@ -55,39 +55,39 @@
  <table border = "1" width = "100%">
 <thead>
 <tr>
-<th >flightnumber</th> 
-<th>flightname</th>
-<th>startsfrom</th>
-<th>destination</th>
-<th>arrivaltime</th>
-<th>departuretime</th>
+<th >Flightnumber</th> 
+<th>Flightname</th>
+<th>Startsfrom</th>
+<th>Destination</th>
+<th>Arrivaltime</th>
+<th>Departuretime</th>
 <th>Price</th>
 </tr>
 </thead>
 <tbody>
-    <td>${flightform.flightnumber}</td> 
-    <td>${flightform.flightname}</td>  
-	<td>${flightform.startsfrom}</td>
+    <td>${flightform.flightNumber}</td> 
+    <td>${flightform.flightName}</td>  
+	<td>${flightform.startsFrom}</td>
 	<td>${flightform.destination}</td>
-	<td>${flightform.arrivaltime}</td>
-	<td>${flightform.departuretime}</td>
+	<td>${flightform.arrivalTime}</td>
+	<td>${flightform.departureTime}</td>
 	<td>${flightform.price}</td>
 </tbody>
 </table>
 </fieldset>
  <form:form modelAttribute="flightform" method="post" action="${editURL}">
       </form:form>
-<form action="/Checkout" >
+<form action="/checkOut" >
 <br><br><br>
-Enter Passanger Name: <input required="required" type = "text" placeholder="Enter Name" , name = "passangername">  <br> <br> 
+Enter Passanger Name: <input required="required" type = "text" placeholder="Enter Name" , name = "passangerName">  <br> <br> 
 Enter Passanger Age: <input  type = "number" placeholder="Enter Age" , name="age"><br>  <br>
 
  <input type= "hidden"  name="price" value="${flightform.price}">
  <input type= "hidden"  name="date" value="${date}">
  <input type= "hidden"  name="number" value="${number}">
-<input type="hidden" name="firstname" value="${firstname}">
-<input  type= "hidden" name="emailid" value="${emailid}">
-<input  type= "hidden" name="phonenumber" value="${phonenumber}">
+<input type="hidden" name="firstname" value="${firstName}">
+<input  type= "hidden" name="emailid" value="${emailId}">
+<input  type= "hidden" name="phonenumber" value="${phoneNumber}">
 
 <input type ="submit" value="Submit">
 </form>

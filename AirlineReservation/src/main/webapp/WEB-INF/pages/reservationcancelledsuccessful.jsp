@@ -14,7 +14,7 @@ Reservation Cancelled successfully..
 <br><br>
 <h2>To Go to Profile Page</h2>
 
-<form action="/userprofile" >
+<form action="/userProfile" >
 <input type="submit" value="Click Here...">
 </form>
 </center>

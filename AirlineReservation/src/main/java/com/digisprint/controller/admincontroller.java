@@ -11,78 +11,76 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.digisprint.model.Flight;
 import com.digisprint.service.FlightService;
 import com.digisprint.service.AdminService;
 import javax.servlet.http.*;
 
-@Controller
-@Component
+@RestController
 public class AdminController {
 
-	@Autowired
-	AdminService adminservice;
+	AdminService adminService;
+	FlightService flightService;
+	FlightController flightController;
 
-	@Autowired
-	FlightService flightservice;
+	public AdminController(AdminService adminService, FlightService flightService, FlightController flightController) {
 
-	@Autowired
-	FlightController flightcontroller;
-	
-	@GetMapping("/admin")
-	public String Entry() {
-		return "adminLoginPage";
+		this.adminService = adminService;
+		this.flightService = flightService;
+		this.flightController = flightController;
 	}
 
-	@PostMapping("/adminlogin")
+	@GetMapping("/admin")
+	public ModelAndView adminLoginPage() {
+		ModelAndView model = new ModelAndView("adminLoginPage");
+		return model;
+	}
 
-	public ModelAndView loginadmin(@RequestParam("username") String username,
-			@RequestParam("adminpassword") String adminpassword, HttpServletRequest request) throws SQLException {
+	@PostMapping("/adminLogin")
+	public ModelAndView loginAdminValidation(@RequestParam("userName") String userName,
+			@RequestParam("adminPassword") String adminPassword, HttpServletRequest request) throws SQLException {
 
-		boolean result = adminservice.validate(username, adminpassword);
+		boolean result = adminService.validate(userName, adminPassword);
 		if (result == true) {
-			return flightcontroller.fetchflightdetailsfromadmin(request);
+			return flightController.fetchFlightDetailsFromAdmin(request);
 		} else {
-			return null;
+			return flightController.loginFailed();
 		}
 	}
 
-	@RequestMapping(value = "/deleteflight/{flightnumber}", method = RequestMethod.GET)
-	public String delete(@PathVariable int flightnumber) {
+	@RequestMapping(value = "/deleteFlight/{flightNumber}", method = RequestMethod.GET)
+	public ModelAndView deleteFlight(@PathVariable int flightNumber) {
 
-		adminservice.DeleteFlight(flightnumber);
-
-		return "flightdeletedsuccessful";
-
+		adminService.deleteFlight(flightNumber);
+		ModelAndView model = new ModelAndView("flightDeletedSuccessful");
+		return model;
 	}
 
-	@RequestMapping(value="/addFlight" , method=RequestMethod.POST)
-	public ModelAndView add(@ModelAttribute("flightForm") Flight flight) {
-		adminservice.addBook(flight);
-		return new ModelAndView("redirect:/fetchflightdetailsfromadmin"); // data will add and return to main page
+	@RequestMapping(value = "/addFlight", method = RequestMethod.POST)
+	public ModelAndView addFlight(@ModelAttribute("flightForm") Flight flight) {
+		adminService.addBook(flight);
+		return new ModelAndView("redirect:/fetchFlightDetailsFromAdmin"); // data will add and return to main page
 	}
 
-	
-	@RequestMapping("/editFlight123/{flightnumber}")
-	public ModelAndView editFlight(@PathVariable("flightnumber") int flightnumber) {
+	@RequestMapping("/editFlight/{flightNumber}")
+	public ModelAndView editFlight(@PathVariable("flightNumber") int flightNumber) {
 		ModelAndView modelAndView = new ModelAndView();
-		Flight flight = adminservice.UpdateFlight(flightnumber);
-		
-			
-		modelAndView.addObject("flightForm",flight);
-		modelAndView.setViewName("addflight");
+		Flight flight = adminService.UpdateFlight(flightNumber);
+
+		modelAndView.addObject("flightForm", flight);
+		modelAndView.setViewName("addFlight");
 		return modelAndView;
 	}
-	
-	@RequestMapping(value="/addFlight" , method=RequestMethod.GET)
+
+	@RequestMapping(value = "/addFlight", method = RequestMethod.GET)
 	public ModelAndView addFlight() {
 		ModelAndView modelAndView = new ModelAndView();
 		Flight flight = new Flight();
-		modelAndView.addObject("flightForm",flight);
-		modelAndView.setViewName("addflight");
+		modelAndView.addObject("flightForm", flight);
+		modelAndView.setViewName("addFlight");
 		return modelAndView;
 	}
-	 
 
 }

@@ -13,7 +13,8 @@ import com.digisprint.model.Reservation;
 @Component
 public interface ReservationRepository extends JpaRepository<Reservation,Integer> {
 
-	List<Reservation> findAllByUserName(String name);
+	List<Reservation> findAllByuserName(String name);
 
+	Reservation findById(int id);
 
 }

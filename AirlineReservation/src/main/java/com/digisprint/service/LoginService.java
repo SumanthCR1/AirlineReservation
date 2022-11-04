@@ -23,54 +23,50 @@ import com.digisprint.repository.PassangerRepository;
 @Service
 public class LoginService {
 
-	@Autowired
-	FlightRepository flightrepository;
-	
-	@Autowired
-	LoginRepository loginrepository;
-	
-	@Autowired
-	PassangerRepository passangerrepository;
-	
+	FlightRepository flightRepository;
+	LoginRepository loginRepository;
+	PassangerRepository passangerRepository;
 	int id;
-	String firstname, contactaddress, emailid, phonenumber, age;
-	
-	public boolean validate( HttpServletRequest request) throws SQLException {
-		
+	String firstName, contactAddress, emailId, phoneNumber, age;
+
+	public LoginService(FlightRepository flightRepository, LoginRepository loginRepository,
+			PassangerRepository passangerRepository) {
+
+		this.flightRepository = flightRepository;
+		this.loginRepository = loginRepository;
+		this.passangerRepository = passangerRepository;
+	}
+
+	public Passanger validateData(HttpServletRequest request) throws SQLException {
+
 		Passanger user;
-        firstname= request.getParameter("firstname");
-         String password=request.getParameter("password");
-        user= loginrepository.findByFirstnameAndPassword(firstname, password);
-        boolean res=(user.getFirstname().equals(firstname)&&user.getPassword().equals(password));
-    
-        if(res==true)
-        {
-        	age=user.getGender();
-        	emailid=user.getEmailid();
-        	phonenumber=user.getPhonenumber();
-        	System.out.println("True");
-            return true;
-        }
-        else {
-        	System.out.println("False");
-            return false;
-        }
+		
+		firstName = request.getParameter("firstName");
+		String password = request.getParameter("password");
+		user = loginRepository.findByFirstNameAndPassword(firstName, password);
+	
+		if (user != null) {
+			
+			age = user.getGender();
+			emailId = user.getEmailId();
+			phoneNumber = user.getPhoneNumber();
+			
+		}
+		return user;
 	}
 
-	public Passanger getdata(String firstname)
-	{	
-	   Passanger passanger= passangerrepository.findByfirstname(firstname);
-	   return passanger;
+	public Passanger getData(String firstName) {
+		Passanger passanger = passangerRepository.findByfirstName(firstName);
+		return passanger;
 	}
-	public ModelMap getreservation(ModelMap map) {
 
-		map.put("firstname", firstname );
-		map.put("emailid", emailid );
-		map.put("phonenumber", phonenumber );
-		System.out.println(firstname);
-		System.out.println(emailid);
+	public ModelMap getReservation(ModelMap map) {
+
+		map.put("firstName", firstName);
+		map.put("emailId", emailId);
+		map.put("phoneNumber", phoneNumber);
 		return map;
-	
+
 	}
-	
+
 }

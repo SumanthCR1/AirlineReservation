@@ -7,16 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<center>
-<h1>
-Flight Deleted successfully..
-</h1>
-<br><br>
-<h2>To Go to Admin Home Page</h2>
 
-<form action="/fetchFlightDetailsFromAdmin" >
-<input type="submit" value="Click Here...">
-</form>
-</center>
+<center>
+<br><br>
+<h2>Booking id is Not Found </h2>
+<h2>Please Check the booking id </h2>
+<h2>Please try again with Correct Booking id</h2>
+<h3>If you </h3>
+</h2>
+ <a  href="/"> Go to Main Page</a>
+ 
+ </center>
+
 </body>
 </html>

@@ -41,10 +41,6 @@
 	left: 85%;
 	}
 
-body {
-	background-image: url("images/aeroplane1.jpg");
-	background-size: cover;
-}
 </style>
 
 </head>
@@ -53,12 +49,12 @@ body {
 		<div class="topnav">
 
 		<a >Welcome to AirFly</a> 
-		<a href="fetchpassangerdetails">UserData</a> 
+		<a href="fetchPassangerDetails">UserData</a> 
 		
 		<a class="admin" href="index" style="background-color: red;"> Logout</a>
 
 	</div><br><br>
-<form action="fetchflightdetailsfromadmin">
+<form action="fetchFlightDetailsFromAdmin">
 <input type="submit" value="GoBack">
 </form>
 

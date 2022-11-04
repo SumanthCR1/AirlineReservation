@@ -63,7 +63,7 @@ body {
 
 			<h1 style="color: white">AirRide Booking Form</h1>
 			<h3 style="color: white">Booking Details</h3>
-			<form action="fetchflightdetails">
+			<form action="fetchFlightDetails">
 				<select style="width: 150px; margin: 20px" name="from">
 					<option value="">From</option>
 					
@@ -105,7 +105,7 @@ body {
 				</div>
 
 				<div style="width: 150px; margin: 20px">
-					<input type="number" id="input-group" placeholder="Adult" name="noofseats"><br></br> 
+					<input type="number" id="input-group" placeholder="Adult" name="noOfSeats"><br></br> 
 						<input type="number" id="input-group" placeholder="Children(0-11years)"><br></br>
 
 				</div>
@@ -119,7 +119,7 @@ body {
 				</div>
 				<h2>To View All Flights</h2>
 		
-			<form action="/fetchallflightdetails">
+			<form action="/fetchAllFlightDetails">
 		<input type="submit" value="Click Here.."><br><br><br>
 	</form>
 		</fieldset>

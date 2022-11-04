@@ -12,6 +12,6 @@ import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 
 public interface FlightFilterRepository extends JpaRepository<Flight, Integer> {
  
-	public Flight findByflightnumber(int flightno);
+	public Flight findByFlightNumber(int flightNumber);
 	
 }

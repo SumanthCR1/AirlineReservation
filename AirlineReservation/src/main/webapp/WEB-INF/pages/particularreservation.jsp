@@ -32,10 +32,7 @@
 	position: absolute;
 	left: 92%;
 }
-body {
-	background-image: url("images/aeroplane1.jpg");
-	background-size: cover;
-}
+
 </style>
 </head>
 <body>

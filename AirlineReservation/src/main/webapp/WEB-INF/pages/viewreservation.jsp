@@ -40,31 +40,31 @@
 <body>
 	<div class="topnav">
 
-		<a href="/fetchflightdetailslogin" style="background-color: green;">GoToHomePage</a>
+		<a href="/fetchFlightDetailsLogin" style="background-color: green;">GoToHomePage</a>
 		<a>Welcome to AirFly</a>
-		 <a class="profile" href="userprofile">UserProfile</a> 
+		 <a class="profile" href="userProfile">UserProfile</a> 
 		<a class="admin" href="index" style="background-color: red;"> Logout</a>
 
 	</div>
 <center>
 
-<h1> Congratulations  ${UserName} </h1>
+<h1> Congratulations  ${userName} </h1>
 <h2>Your Seats Booked successfully</h2>
 <br><br>
 <h2>Flight Details are:</h2>
 
-<h4> FlightNumber:  ${FlightNumber }</h4>
-<h4> DepartureFrom:  ${FlightStartsFrom }</h4>
-<h4> Destination:  ${Destination }</h4>
+<h4> FlightNumber:  ${flightNumber }</h4>
+<h4> DepartureFrom:  ${flightStartsFrom }</h4>
+<h4> Destination:  ${destination }</h4>
 <h4> Booked Date:  ${date}</h4>
-<h4>DepartureTime:  ${DepartureTime }</h4>
+<h4>DepartureTime:  ${departureTime }</h4>
 <h4>GateNumber:  B12</h4>
 
 <br><br>
 <h2>Passanger Details are:</h2>
-<h4> PassangerName:  ${PassangerName}</h4>
-<h4> PassangerAge:  ${PassangerAge}</h4>
-<h4> NumberOfSeatsBooked:  ${NumberOfSeats}</h4>
+<h4> PassangerName:  ${passangerName}</h4>
+<h4> PassangerAge:  ${passangerAge}</h4>
+<h4> NumberOfSeatsBooked:  ${numberOfSeats}</h4>
 <br><br>
 
 
@@ -77,7 +77,7 @@
 
 <h2>Thankyou..</h2>
 <h2>Happy Landing..</h2>
-<form  action="/fetchflightdetailslogin" method="get">
+<form  action="/fetchFlightDetailsLogin" method="get">
 <input type="submit" value="GotoHomePage" style="background-color: blue; color:white; height: 40px" ><br><br>
 </form>
 </center>

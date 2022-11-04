@@ -41,7 +41,7 @@
 <body>
 	<div class="topnav">
 
-		<a href="/fetchflightdetailslogin" style="background-color: green;">GoToHomePage</a>
+		<a href="/fetchFlightDetailsLogin" style="background-color: green;">GoToHomePage</a>
 		<a>Welcome to AirFly</a> <a class="profile" href="userprofile">UserProfile</a>
 		<a class="admin" href="index" style="background-color: red;">
 			Logout</a>
@@ -49,7 +49,7 @@
 	</div>
 	<br>
 	<br>
-	<form action="/userprofile">
+	<form action="/userProfile">
 		<input type="submit" value="GoToBackPage">
 	</form>
 	<center>
@@ -96,7 +96,7 @@
 
 
 
-								<form action="/deletehistory/${user.bookingID}">
+								<form action="/deleteHistory/${user.bookingID}">
 								
 									<input type="submit" value="Cancel ">
 								</form>

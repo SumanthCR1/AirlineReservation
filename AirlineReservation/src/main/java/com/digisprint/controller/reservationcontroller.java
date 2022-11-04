@@ -1,19 +1,9 @@
 package com.digisprint.controller;
 
-import java.security.Provider.Service;
-
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.catalina.startup.ClassLoaderFactory.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,101 +13,85 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.digisprint.model.Flight;
 import com.digisprint.model.Reservation;
-
 import com.digisprint.service.LoginService;
-import com.digisprint.service.PassangerService;
 import com.digisprint.service.ReservationService;
 
-@Controller
-@Component
+@RestController
 public class ReservationController {
 
-	@Autowired
-	ReservationService reserveservice;
-
-	@Autowired
-	LoginService loginservice;
-	
-	@Autowired
-	FlightFilterController filtercontroller;
-	
-	Flight flightlist;
-	String name;
-	int number, age;
+	ReservationService reserveService;
+	LoginService loginService;
+	FlightFilterController flightFilterController;
+	Flight flightList;
+	String userName;
+	int numberOfSeats, age;
 	Date date;
-
-	 @GetMapping("/Searchbookedhistory") 
-	  public String BookedHistory(@RequestParam ("userName") String userName, HttpServletRequest request, ModelMap map) {
-		 System.out.println(userName);
-		
-		List<Reservation> result=reserveservice.bookedHistory(userName);
-		
-		System.out.println(result);
-		
-		map.put("user", result);
-		 return "userhistory";
-		 }
 	
-	  @PostMapping("/Searchbookedstatus") 
-	  public ModelAndView flightstatus(@RequestParam
-	  ("bookingID") int bookingid, ModelMap map){
-	  System.out.println(bookingid);
-	  System.out.println("Hello");
-	  
-	 Reservation result=reserveservice.booking(bookingid);
+	
+	public ReservationController(ReservationService reserveService, LoginService loginService,
+			FlightFilterController flightFilterController) {
+		this.reserveService = reserveService;
+		this.loginService = loginService;
+		this.flightFilterController = flightFilterController;
+	}
+
+	 @GetMapping("/searchBookedHistory") 
+	  public ModelAndView bookedHistory(@RequestParam ("userName") String userName, HttpServletRequest request, ModelMap map) {
+		List<Reservation> result=reserveService.bookedHistory(userName);	
+		ModelAndView model=new ModelAndView("userHistory");
+		map.put("user", result);
+		 return model;
+		 }
 	 
-	  ModelAndView mv= new ModelAndView("particularreservation");
-	//  request.setAttribute ("user", result);
-	  map.put("user", result);
-	  System.out.println("out");
-	  return mv;
+	  @PostMapping("/searchBookedStatus") 
+	  public ModelAndView flightStatus(@RequestParam ("bookingID") int bookingId, ModelMap map) throws NullPointerException{
+	  
+		  Reservation result=reserveService.booking(bookingId); 
+	 	if (result!=null) {
+		 ModelAndView model= new ModelAndView("particularReservation");
+		  map.put("user", result);
+		  return model;
+		} else {
+			ModelAndView model=new ModelAndView("bookedStatusFailed");
+			return model;
+		}
 	  }
 	 
-	@GetMapping("/Checkout")
-	public String check(@RequestParam("number") int number1, @RequestParam("age") int age1,
-			@RequestParam("price") int price, @RequestParam("passangername") String passangername,
-			@RequestParam("date") Date date1, HttpServletRequest request, 
+	@GetMapping("/checkOut")
+	public ModelAndView checkingOutPassanger(@RequestParam("number") int newNumber, @RequestParam("age") int newAge,
+			@RequestParam("price") int price, @RequestParam("passangerName") String passangerName,
+			@RequestParam("date") Date givendate, HttpServletRequest request, 
 		ModelMap map) {
-		loginservice.getreservation(map);
-		System.out.println("i am here");
-		//System.out.println(firstname);
-		number = number1;
-		age = age1;
-		name = passangername;
-		date= date1;
-		
-		int total = number1 * price;
-		map.put("Total", total);
-		return "Confirmpayment";
+		ModelAndView model=new ModelAndView("confirmPayment");
+		loginService.getReservation(map);
+		numberOfSeats = newNumber;
+		age = newAge;
+		userName = passangerName;
+		date= givendate;
+			
+		int total = numberOfSeats * price;
+		map.put("Total", total);	
+		return model;
 	}
 
-
-	@GetMapping("/Confirmed")
-	public String Final(@RequestParam("firstname") String firstname, @RequestParam("emailid") String emailid,
-			@RequestParam("phonenumber") String phonenumber,
-
-			ModelMap map) {
-		// ModelMap str=loginservice.getreservation(map);
-		flightlist = filtercontroller.flights;
+	@GetMapping("/confirmedReservation")
+	public ModelAndView Final(@RequestParam("firstName") String firstName, @RequestParam("emailId") String emailId,
+			@RequestParam("phoneNumber") String phoneNumber,ModelMap map) {
 		
-		System.out.println(flightlist);
-		System.out.println("Comming");
-		System.out.println(firstname);
-		System.out.println(flightlist.getFlightname());
-		return reserveservice.savedetails(flightlist.getFlightnumber(), flightlist.getFlightname(), flightlist.getStartsfrom(),
-				flightlist.getDestination(), flightlist.getArrivaltime(), flightlist.getDeparturetime(), name, age,
-				number, firstname, emailid, phonenumber,date, map);
+		flightList = flightFilterController.flights;
+		return reserveService.saveDetails(flightList.getFlightNumber(), flightList.getFlightName(), flightList.getStartsFrom(),
+				flightList.getDestination(), flightList.getArrivalTime(), flightList.getDepartureTime(), userName, age,
+				numberOfSeats, firstName, emailId, phoneNumber,date, map);
 
 	}
-	@RequestMapping(value = "/deletehistory/{bookingID}", method = RequestMethod.GET)
-	public String delete(@PathVariable int bookingID) {
+	@RequestMapping(value = "/deleteHistory/{bookingID}", method = RequestMethod.GET)
+	public ModelAndView deleteBookedHistory(@PathVariable int bookingID) {
+		ModelAndView model= new ModelAndView("reservationCancelledSuccessful");
+		reserveService.deleteFlight(bookingID);
 
-		reserveservice.deleteflight(bookingID);
-
-		return "reservationcancelledsuccessful";
+		return model;
 
 	}
 

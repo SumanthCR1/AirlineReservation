@@ -1,157 +1,142 @@
 package com.digisprint.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.digisprint.model.Flight;
 import com.digisprint.model.Passanger;
 import com.digisprint.model.Reservation;
-import com.digisprint.repository.*;
 import com.digisprint.service.FlightService;
 import com.digisprint.service.LoginService;
 import com.digisprint.service.PassangerService;
 import com.digisprint.service.ReservationService;
-
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.PUT;
 
-@Controller
-@Component
+@RestController
 public class PassangerController {
 
-	@Autowired
 	PassangerService passangerService;
-
-	@Autowired
 	LoginService loginService;
-
-	@Autowired
-	FlightService flightservice;
-
-	@Autowired
-	ReservationService reservationservice;
-
-	@Autowired
-	FlightController flightcontroller;
-	
+	FlightService flightService;
+	ReservationService reservationService;
+	FlightController flightController;
 	Passanger passanger;
 
+	public PassangerController(PassangerService passangerService, LoginService loginService,
+			FlightService flightService, ReservationService reservationService, FlightController flightController) {
+
+		this.passangerService = passangerService;
+		this.loginService = loginService;
+		this.flightService = flightService;
+		this.reservationService = reservationService;
+		this.flightController = flightController;
+
+	}
+
 	@GetMapping("/")
-	public String Welcomepage() {
-		return "Welcomepage";
+	public ModelAndView welcomePage() {
+		ModelAndView model = new ModelAndView("welcomePage");
+		return model;
 	}
 
 	@GetMapping("/index")
-	public String Entry() {
-		return "indexpage";
+	public ModelAndView indexPage() {
+		ModelAndView model = new ModelAndView("indexPage");
+		return model;
 	}
 
-	@GetMapping("/regist")
-	public String navigate() {
-		return "register";
+	@GetMapping("/registration")
+	public ModelAndView userRegistration() {
+		ModelAndView model = new ModelAndView("register");
+		return model;
 	}
 
 	@GetMapping("/login")
-	public String loginpage() {
-		return "Login";
+	public ModelAndView loginpage() {
+		ModelAndView model = new ModelAndView("loginPage");
+		return model;
 	}
 
 	@PostMapping("/filter")
-	public String login(HttpServletRequest request, ModelMap model) throws SQLException {
-		
-		boolean result = loginService.validate(request);
-		if (result == true) {
-			passanger = loginService.getdata(request.getParameter("firstname"));
-			return flightcontroller.fetchRowslogin(request);
+	public ModelAndView login(HttpServletRequest request, ModelMap model) throws SQLException {
 
+		Passanger result = loginService.validateData(request);
+		passanger = loginService.getData(request.getParameter("firstName"));
+		if (Objects.nonNull(result)) {
+			return flightController.fetchRowsLogin(request);
 		} else {
-			System.out.println("falseeee");
-			return flightcontroller.Loginfailed();
+
+			return flightController.loginFailed();
 		}
 	}
 
 	@PostMapping("/details")
-	public String viewDetails(@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname,
-			@RequestParam("age") int age, @RequestParam("gender") String gender,
-			@RequestParam("phonenumber") String phonenumber, @RequestParam("contactaddress") String contactaddress,
-			@RequestParam("emailid") String emailid, @RequestParam("password") String password, ModelMap modelMap) {
+	public ModelAndView viewDetails(@RequestParam("firstName") String firstName,
+			@RequestParam("lastName") String lastName, @RequestParam("age") int age,
+			@RequestParam("gender") String gender, @RequestParam("phoneNumber") String phoneNumber,
+			@RequestParam("contactAddress") String contactAddress, @RequestParam("emailId") String emailId,
+			@RequestParam("password") String password, ModelMap modelMap) {
 
-		return passangerService.details(firstname, lastname, age, gender, phonenumber, contactaddress, emailid,
+		return passangerService.details(firstName, lastName, age, gender, phoneNumber, contactAddress, emailId,
 				password, modelMap);
 	}
 
-	@GetMapping("/userprofile")
-	public String userprofile(ModelMap map) {
-		System.out.println("Hello i am in userprofile");
+	@GetMapping("/userProfile")
+	public ModelAndView userprofile(ModelMap map) {
+		ModelAndView model = new ModelAndView("userProfile");
 		map.put("user", passanger);
 
-		return "userprofile";
+		return model;
 	}
 
-	@GetMapping("/fetchpassangerdetails")
+	@GetMapping("/fetchPassangerDetails")
 	public ModelAndView fetchAllPassanger(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("getallpassanger");
-		List<Passanger> customer = passangerService.userlist();
+		ModelAndView model = new ModelAndView("getAllPassanger");
+		List<Passanger> customer = passangerService.userList();
 		request.setAttribute("list", customer);
-
-		return mv;
+		return model;
 	}
 
-	@GetMapping("/fetchreservedpassangerdetails")
+	@GetMapping("/fetchReservedPassangerDetails")
 	public ModelAndView fetchAllReservedPassanger(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("getallreservedpassanger");
-		List<Reservation> Reserve = reservationservice.userlist();
+		ModelAndView mv = new ModelAndView("getAllReservedPassanger");
+		List<Reservation> Reserve = reservationService.userList();
 		request.setAttribute("data", Reserve);
-
-		System.out.println("Done");
 		return mv;
 	}
 
-	@RequestMapping(value="/addPassanger" , method=RequestMethod.POST)
+	@RequestMapping(value = "/addPassanger", method = RequestMethod.POST)
 	public ModelAndView addPassanger(@ModelAttribute("passangerform") Passanger passanger) {
-		passangerService.addpassanger(passanger);
-		
+		passangerService.addPassanger(passanger);
+
 		return new ModelAndView("redirect:/userprofile"); // data will add and return to main page
 	}
 
 	@GetMapping("/editPassangerData/{id}")
 	public ModelAndView editUser() {
 		ModelAndView modelAndView = new ModelAndView();
-		System.out.println(passanger.getId());
-		modelAndView.addObject("passangerform",passanger);
-		modelAndView.setViewName("editpassanger");
+		modelAndView.addObject("passangerform", passanger);
+		modelAndView.setViewName("editPassanger");
 
 		return modelAndView;
 	}
-	
-	@RequestMapping(value="/addPassanger" , method=RequestMethod.GET)
+
+	@RequestMapping(value = "/addPassanger", method = RequestMethod.GET)
 	public ModelAndView addUser() {
 		ModelAndView modelAndView = new ModelAndView();
-		Passanger pass = new Passanger();
-		modelAndView.addObject("passangerform",pass);
+		Passanger passanger = new Passanger();
+		modelAndView.addObject("passangerform", passanger);
 		modelAndView.setViewName("editpassanger");
 		return modelAndView;
 	}
-	 
 
-	
-
-	
-	
 }

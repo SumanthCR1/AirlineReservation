@@ -8,8 +8,12 @@
 </head>
 <body>
 <center>
-<h3>Login failed </h3>
- <a  href="login"> Go to login page</a>
+<br><br>
+<h2>UserName/Password Error</h2>
+<h2>Please try again with Correct UserName/Password...
+</h2>
+ <a  href="/index"> Go to login page</a>
+ 
  </center>
 </body>
 </html>

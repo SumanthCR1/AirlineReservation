@@ -23,7 +23,7 @@ body {
 <input type="submit" value="CLick here to go to main page..."style=" color:black; height: 40px">
 </form><br></br>
 
- <form class ="test3" action="Searchbookedstatus" method="post" >
+ <form action="searchBookedStatus" method="post" >
  <h2>If You Have Already Booked And Want To Check Flight Status</h2><br>
 Search Here<input required="required" type = "number" placeholder="Enter BookingID" name="bookingID"> <br><br>
  <input type="submit" value="Search"></input>

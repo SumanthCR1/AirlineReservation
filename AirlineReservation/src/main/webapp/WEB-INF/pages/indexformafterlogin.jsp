@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -36,11 +36,11 @@
 	position: absolute;
 	left: 92%;
 }
-.Book{
+
+.Book {
 	position: absolute;
 	left: 85%;
-	}
-
+}
 </style>
 
 </head>
@@ -48,47 +48,44 @@
 
 	<div class="topnav">
 
-		<a href="/fetchflightdetailslogin" style="background-color: green;">GoToHomePage</a>
-		<a>Welcome to AirRide.com</a>
-		 <a class="profile" href="userprofile">UserProfile</a> 
-		<a class="admin" href="index" style="background-color: red;"> Logout</a>
+		<a href="/fetchFlightDetailsLogin" style="background-color: green;">GoToHomePage</a>
+		<a>Welcome to AirRide.com</a> <a class="profile" href="userProfile">UserProfile</a>
+		<a class="admin" href="index" style="background-color: red;">
+			Logout</a>
 
 	</div>
 	<br>
 	<br>
-	
+
 	<center>
-		<h1>Welcome Back to AirFly Online Flight Booking </h1>
+		<h1>Welcome Back to AirFly Online Flight Booking</h1>
 		<fieldset style="color: black; width: 500px">
 
 			<h1>AirRide Flight Booking Form</h1>
 			<h3>Filter Details By</h3>
-			<form action="fetchflightdetailslogin2nd">
+			<form action="fetchFlightDetailsLoginIndex">
 				<select style="width: 150px; margin: 20px" name="from">
 					<option value="">From</option>
-					
+
 					<option value="Bihar">Bihar</option>
 					<option value="Banglore">Banglore</option>
 					<option value="Delhi">Delhi</option>
 					<option value="MadhyaPradesh">MadhyaPradesh</option>
 					<option value="Mysore">Mysore</option>
-					
-				
+
+
 				</select> <select style="width: 150px; margin: 20px" name="to">
 					<option value="">To</option>
-				
-				
+
+
 					<option value="Banglore">Banglore</option>
 					<option value="Delhi">Delhi</option>
 					<option value="Mysore">Mysore</option>
-					
-				</select>
-				 <input required="required" type = "date" placeholder="Select date" , name="date">
-				
-					
-					<select
-					style="width: 150px; margin: 20px" name="Preference">
-					
+
+				</select> <input required="required" type="date" placeholder="Select date"
+					, name="date"> <select style="width: 150px; margin: 20px"
+					name="Preference">
+
 					<option value="">Preffered Airline</option>
 					<option value="IndiGo">IndiGo</option>
 					<option value="AirIndia">Air India</option>
@@ -97,7 +94,7 @@
 					<option value="Vistara">Vistara</option>
 					<option value="AllianceAir">Alliance Air</option>
 					<option value="TruJet">TruJet</option>
-					
+
 				</select> <select style="width: 150px; margin: 20px" name="seat">
 					<option value="">Preffered Seating</option>
 					<option value="Business">Business Class</option>
@@ -105,23 +102,26 @@
 					<option value="First Class">First Class</option>
 					<option value="Premium">Premium</option>
 				</select>
-				</div><br><br>
-				
-				<input required="required" type = "number" placeholder="Enter numberOfSeats" , name="number">
-				
 				</div>
-					<br><br>
+				<br>
+				<br> <input required="required" type="number"
+					placeholder="Enter numberOfSeats" , name="number">
+
+				</div>
+				<br>
+				<br>
 				<div>
-				
-					<input type="hidden" name="firstname" value="${firstname}">
-<input  type= "hidden" name="emailid" value="${emailid}">
-<input  type= "hidden" name="phonenumber" value="${phonenumber}">
+
+					<input type="hidden" name="firstName" value="${firstName}">
+					<input type="hidden" name="emailId" value="${emailId}"> <input
+						type="hidden" name="phoneNumber" value="${phoneNumber}">
 
 					<button type="submit">Submit Form</button>
-					</form><br></br>
-				
-				</div>
-			
+			</form>
+			<br></br>
+
+			</div>
+
 		</fieldset>
 
 	</center>
